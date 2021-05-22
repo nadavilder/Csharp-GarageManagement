@@ -8,9 +8,24 @@ namespace Ex03.GarageLogic
     {
         private string m_LicenseType;
         private int m_EngineVolume;
+        
+        public Motorcycle()
+        {
+
+        }
+        
         public Motorcycle(string i_ModelName, string i_LicesnsePlateNum, float i_AmountOfEnergtLeft, Wheel[] i_Wheels,Engine i_Engine, string i_AdditionalData) : base(i_ModelName, i_LicesnsePlateNum, i_AmountOfEnergtLeft, i_Wheels, i_Engine)
         {
             //parse "A, 56"
+        }
+
+        public override string[] GetParams()
+        {
+            string[] toAsk = new string[2];
+            toAsk[0] = "Model Name";
+            toAsk[1] = "License Type";
+            return toAsk;
+
         }
 
         public override string ToString()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Ex03.GarageLogic;
 
 namespace B21_Ex03_Shahar_311359566_Nadav_312173776
 {
@@ -27,6 +28,19 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             //Parse vehicle details and send to factory
             Console.WriteLine("Please enter basic vehicle Type");
             string vehicleTypeString = Console.ReadLine();
+            Console.WriteLine("Please enter License Plate");
+            string licenseString = Console.ReadLine();
+            //Check if license plate exists
+            //if not create new vehicle
+            Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleTypeString);
+            string[] additionalDetails = newVehicle.GetParams();
+            foreach(string detail in additionalDetails)
+            {
+                Console.WriteLine(detail);
+            }
+            //Ask qeustions based on the vehicle
+
+
             Console.WriteLine("Please enter basic vehicle details");
             string basicVehicleDetailsString = Console.ReadLine();
             Console.WriteLine("Please enter basic Wheel details");
@@ -36,7 +50,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             Console.WriteLine("Please enter basic additional details");
             string additionalDetailsString = Console.ReadLine();
             
-            Ex03.GarageLogic.GarageLogic.AdmitNewVehicle(vehicleTypeString, basicVehicleDetailsString, wheelDetailsString, engineDetailsString, additionalDetailsString);
+            //GarageLogic.AdmitNewVehicle(vehicleTypeString, basicVehicleDetailsString, wheelDetailsString, engineDetailsString, additionalDetailsString);
 
         }
 

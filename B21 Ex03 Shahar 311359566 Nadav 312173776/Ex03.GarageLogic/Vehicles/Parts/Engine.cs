@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Engine
+    public class Engine
     {
         float m_CurrentEnergyAmount;
         float m_MaxEnergyAmount;

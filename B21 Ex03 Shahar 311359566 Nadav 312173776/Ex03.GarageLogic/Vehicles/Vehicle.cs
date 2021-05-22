@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    abstract class Vehicle
+    public abstract class Vehicle
     {
         protected string m_ModelName;
         protected readonly string  m_LicesnsePlateNum;
@@ -12,6 +12,13 @@ namespace Ex03.GarageLogic
         protected Wheel[] m_Wheels;
         protected Engine m_Engine;
 
+        
+        public Vehicle()
+        {
+
+        }
+        
+        
         public Vehicle(string i_ModelName, string i_LicesnsePlateNum, float i_AmountOfEnergtLeft, Wheel[] i_Wheels, Engine i_Engine)
         {
             m_ModelName = i_ModelName;
@@ -20,6 +27,9 @@ namespace Ex03.GarageLogic
             m_Wheels = i_Wheels;
             //m_Engine = i_Engine;
         }
+
+        abstract public string[] GetParams();
+
 
         public Engine Engine
         {

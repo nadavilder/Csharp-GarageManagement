@@ -4,28 +4,23 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Factory
+    public class Factory
     {
         
-        public static Vehicle CreateVehicleFromData(string i_Type, string i_BasicVehicleData, string i_WheelData, string i_EngineData, string i_AdditionalData)
+        public static Vehicle CreateVehicleFromData(string i_Type)
         {
             eVehicleType vehicleType = ParseVehicleType(i_Type);
             Vehicle newVehicle = null;
-            //Parse everything other than additional
-            Wheel[] newWheels = CreateWheelsFromData(i_WheelData);
 
-            switch (i_Type)
+            switch (vehicleType)
             {
                 case eVehicleType.Electric_motorcycle:
-                    ElectricEngine electricEngine = CreateElectricEngineFromData(i_EngineData);
                     newVehicle = new Motorcycle();
                     break;
                 case eVehicleType.Fuel_motorcycle:
-                    FuelEngine fuelEngine = CreateFuelEngineFromData(i_EngineData);
                     newVehicle = new Motorcycle();
                     break;
                 case eVehicleType.Truck:
-                    FuelEngine fuelEngine = CreateFuelEngineFromData(i_EngineData);
                     newVehicle = new Truck();
                     break;
 
@@ -49,7 +44,7 @@ namespace Ex03.GarageLogic
             throw new NotImplementedException();
         }
 
-        "manu 15 32,"
+        //"manu 15 32,"
         private static Wheel[] CreateWheelsFromData(string i_WheelData)
         {
             Wheel[] newWheels = new Wheel[i_WheelData.Length];
@@ -58,7 +53,7 @@ namespace Ex03.GarageLogic
 
         private static eVehicleType ParseVehicleType(string i_VehicleType)
         {
-            throw new NotImplementedException();
+            return eVehicleType.Electric_motorcycle;
         }
         public enum eVehicleType
         {

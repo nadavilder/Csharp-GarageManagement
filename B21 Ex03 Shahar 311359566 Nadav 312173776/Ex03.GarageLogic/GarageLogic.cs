@@ -15,10 +15,8 @@ namespace Ex03.GarageLogic
         public static bool AdmitNewVehicle(string i_VehicleType, string i_BasicVehicleData, string i_WheelData, string i_EngineData, string i_AdditionalData, string i_ClientData)
 
         {
-            Factory.eVehicleType vehicleType = ParseVehicleType(i_VehicleType);
-            Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType, i_BasicVehicleData, i_WheelData, i_EngineData, i_AdditionalData);
-            Client newClient = new Client(newVehicle, i_ClientData);
-            m_Clients.Add(newClient.Vehicle.LicensePlate, newClient);
+            //Client newClient = new Client(newVehicle, i_ClientData);
+            //m_Clients.Add(newClient.Vehicle.LicensePlate, newClient);
             return false;
         }
 
@@ -26,7 +24,7 @@ namespace Ex03.GarageLogic
         //2
         private static string[] ShowCurrentVehicles()
         {
-
+            return null;
         }
 
         //3

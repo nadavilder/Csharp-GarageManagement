@@ -6,4 +6,8 @@
     <RootNamespace>B21_Ex03_Shahar_311359566_Nadav_312173776</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj" />
+  </ItemGroup>
+
 </Project>

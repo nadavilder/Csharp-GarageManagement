@@ -15,22 +15,21 @@ namespace Ex03.GarageLogic
             m_EngineType = i_EngineType;
         }
         
-        public Motorcycle(string i_ModelName, string i_LicesnsePlateNum, float i_AmountOfEnergtLeft, Wheel[] i_Wheels,Engine i_Engine, string i_AdditionalData) : base(i_ModelName, i_LicesnsePlateNum, i_AmountOfEnergtLeft, i_Wheels, i_Engine)
-        {
-            //parse "A, 56"
-        }
 
         public override Dictionary<string, string> GetParams()
         {
             Dictionary<string, string> questions = base.GetParams();
+            questions.Add("Engine Type", "");
             questions.Add("License Type", "");
             questions.Add("Motor Volume in cc", "");
             switch (m_EngineType)
             {
                 case Engine.eEngineType.Electric:
-                    //Add electric qeustions
+                    questions.Add("Current Battery Charge", "");
                     break;
-                    
+                case Engine.eEngineType.Fuel:
+                    questions.Add("Current Fuel Liters", "");
+                    break;      
             }
             return questions;
 
@@ -39,10 +38,23 @@ namespace Ex03.GarageLogic
         public override void SetParams(Dictionary<string, string> i_Answers)
         {
             base.SetParams(i_Answers);
-
             m_LicenseType= i_Answers["License Type"];
             m_EngineVolume = Int32.Parse(i_Answers["Motor Volume in cc"]);
-
+            m_Wheels = new Wheel[2];
+            for (int i = 0; i < m_Wheels.Length; i++)
+            {
+                m_Wheels[i]=new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 30f);
+            }
+            Engine newEngine = null;
+            switch (m_EngineType)
+            {
+                case Engine.eEngineType.Electric:
+                    newEngine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 1.8f);
+                    break;
+                case Engine.eEngineType.Fuel:
+                    newEngine = new FuelEngine(FuelEngine.eFuelTypes.Octan98, float.Parse(i_Answers["Current Fuel Liters"]), 6f);
+                    break;
+            }
         }
 
 

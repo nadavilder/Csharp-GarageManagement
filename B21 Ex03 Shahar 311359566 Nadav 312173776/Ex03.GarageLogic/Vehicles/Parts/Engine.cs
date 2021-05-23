@@ -9,10 +9,19 @@ namespace Ex03.GarageLogic
         float m_CurrentEnergyAmount;
         float m_MaxEnergyAmount;
 
+
+        public Engine(float i_CurrentEnergyAmount, float i_MaxEnergyAmount)
+        {
+            m_CurrentEnergyAmount = i_CurrentEnergyAmount;
+            m_MaxEnergyAmount = i_MaxEnergyAmount;
+        }
         public enum eEngineType
         {
             Electric,
-            fuel
+            Fuel
         }
+
+
+        
     }
 }

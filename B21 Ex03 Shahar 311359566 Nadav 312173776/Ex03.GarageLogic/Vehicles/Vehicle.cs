@@ -9,8 +9,8 @@ namespace Ex03.GarageLogic
         protected string m_ModelName;
         protected string  m_LicesnsePlateNum;
         protected float m_AmountOfEnergtLeft;
-        protected Wheel[] m_Wheels;
         protected Engine m_Engine;
+        protected Wheel[] m_Wheels;
 
         
         public Vehicle()
@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
             m_ModelName = i_ModelName;
             m_LicesnsePlateNum = i_LicesnsePlateNum;
             m_AmountOfEnergtLeft = i_AmountOfEnergtLeft;
-            m_Wheels = i_Wheels;
+           // m_Wheels = i_Wheels;
             //m_Engine = i_Engine;
         }
 
@@ -34,7 +34,11 @@ namespace Ex03.GarageLogic
             questions.Add("License Plate Number", "");
             questions.Add("Model Name", "");
             questions.Add("Amount of Energy Left", "");
-            questions.Add("Wheel information", "");
+            questions.Add("Wheel Manufacturer", "");
+            questions.Add("Wheel's Current Air Pressure", "");
+            
+
+
             return questions;
         }
 

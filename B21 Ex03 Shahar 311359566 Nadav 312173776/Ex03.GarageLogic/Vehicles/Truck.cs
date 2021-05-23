@@ -12,9 +12,10 @@ namespace Ex03.GarageLogic
 
         }
 
-        public override string[] GetParams()
+
+        public override Dictionary<string, string> GetParams()
         {
-            throw new NotImplementedException();
+            return base.GetParams();
         }
     }
 }

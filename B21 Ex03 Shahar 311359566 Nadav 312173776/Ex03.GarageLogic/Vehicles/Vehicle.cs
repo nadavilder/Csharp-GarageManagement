@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     public abstract class Vehicle
     {
         protected string m_ModelName;
-        protected readonly string  m_LicesnsePlateNum;
+        protected string  m_LicesnsePlateNum;
         protected float m_AmountOfEnergtLeft;
         protected Wheel[] m_Wheels;
         protected Engine m_Engine;
@@ -28,7 +28,25 @@ namespace Ex03.GarageLogic
             //m_Engine = i_Engine;
         }
 
-        abstract public string[] GetParams();
+         public virtual Dictionary<string,string> GetParams()
+        {
+            Dictionary<string, string> questions =  new Dictionary<string, string>();
+            questions.Add("License Plate Number", "");
+            questions.Add("Model Name", "");
+            questions.Add("Amount of Energy Left", "");
+            questions.Add("Wheel information", "");
+            return questions;
+        }
+
+
+        public virtual void SetParams(Dictionary<string, string> i_Answers)
+        {
+            
+            m_ModelName = i_Answers["Model Name"];
+            m_LicesnsePlateNum = i_Answers["License Plate Number"];
+            m_AmountOfEnergtLeft = float.Parse(i_Answers["Amount of Energy Left"]);
+         
+        }
 
 
         public Engine Engine

@@ -8,10 +8,11 @@ namespace Ex03.GarageLogic
     {
         private string m_LicenseType;
         private int m_EngineVolume;
-        
-        public Motorcycle()
-        {
+        private Engine.eEngineType m_EngineType;
 
+        public Motorcycle(Engine.eEngineType i_EngineType)
+        {
+            m_EngineType = i_EngineType;
         }
         
         public Motorcycle(string i_ModelName, string i_LicesnsePlateNum, float i_AmountOfEnergtLeft, Wheel[] i_Wheels,Engine i_Engine, string i_AdditionalData) : base(i_ModelName, i_LicesnsePlateNum, i_AmountOfEnergtLeft, i_Wheels, i_Engine)
@@ -19,14 +20,31 @@ namespace Ex03.GarageLogic
             //parse "A, 56"
         }
 
-        public override string[] GetParams()
+        public override Dictionary<string, string> GetParams()
         {
-            string[] toAsk = new string[2];
-            toAsk[0] = "Model Name";
-            toAsk[1] = "License Type";
-            return toAsk;
+            Dictionary<string, string> questions = base.GetParams();
+            questions.Add("License Type", "");
+            questions.Add("Motor Volume in cc", "");
+            switch (m_EngineType)
+            {
+                case Engine.eEngineType.Electric:
+                    //Add electric qeustions
+                    break;
+                    
+            }
+            return questions;
 
         }
+
+        public override void SetParams(Dictionary<string, string> i_Answers)
+        {
+            base.SetParams(i_Answers);
+
+            m_LicenseType= i_Answers["License Type"];
+            m_EngineVolume = Int32.Parse(i_Answers["Motor Volume in cc"]);
+
+        }
+
 
         public override string ToString()
         {

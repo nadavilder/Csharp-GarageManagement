@@ -28,27 +28,23 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             //Parse vehicle details and send to factory
             Console.WriteLine("Please enter basic vehicle Type");
             string vehicleTypeString = Console.ReadLine();
-            Console.WriteLine("Please enter License Plate");
-            string licenseString = Console.ReadLine();
+
             //Check if license plate exists
             //if not create new vehicle
             Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleTypeString);
-            string[] additionalDetails = newVehicle.GetParams();
-            foreach(string detail in additionalDetails)
+            Dictionary<string, string> questions = newVehicle.GetParams();
+            List<string> questionsStrings = new List<string>( questions.Keys);
+            foreach(string question in questionsStrings)
             {
-                Console.WriteLine(detail);
+                Console.WriteLine($"Please Enter {question}");
+                string answer = Console.ReadLine();
+                questions[question] = answer;
             }
+
+            newVehicle.SetParams(questions);
             //Ask qeustions based on the vehicle
 
 
-            Console.WriteLine("Please enter basic vehicle details");
-            string basicVehicleDetailsString = Console.ReadLine();
-            Console.WriteLine("Please enter basic Wheel details");
-            string wheelDetailsString = Console.ReadLine();
-            Console.WriteLine("Please enter Engine details");
-            string engineDetailsString = Console.ReadLine();
-            Console.WriteLine("Please enter basic additional details");
-            string additionalDetailsString = Console.ReadLine();
             
             //GarageLogic.AdmitNewVehicle(vehicleTypeString, basicVehicleDetailsString, wheelDetailsString, engineDetailsString, additionalDetailsString);
 

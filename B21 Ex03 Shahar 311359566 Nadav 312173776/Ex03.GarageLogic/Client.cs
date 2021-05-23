@@ -6,22 +6,18 @@ namespace Ex03.GarageLogic
 {
     class Client
     {
-        private Vehicle m_Vehicle;
         private string m_OwnerName;
         private string m_OwnerPhoneNumber;
         private GarageLogic.eVehicleState m_VehicleState;
+        private Vehicle m_Vehicle;
 
-        public Client(Vehicle i_Vehicle, string i_clientData)
+        public Client(string i_OwnerName, string i_OwnerPhoneNumber, GarageLogic.eVehicleState i_VehicleState, Vehicle i_Vehicle)
         {
+            m_OwnerName = i_OwnerName;
+            m_OwnerPhoneNumber = i_OwnerPhoneNumber;
+            m_VehicleState = i_VehicleState;
             m_Vehicle = i_Vehicle;
-            ParseClientData(i_clientData);
-        }
-
-        private void ParseClientData(string i_clientData)
-        {
-            //TODO: parse inside
-
-            throw new NotImplementedException();
+            
         }
 
         public Vehicle Vehicle

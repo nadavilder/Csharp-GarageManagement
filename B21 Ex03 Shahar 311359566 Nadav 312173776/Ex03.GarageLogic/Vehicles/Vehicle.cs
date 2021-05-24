@@ -11,11 +11,11 @@ namespace Ex03.GarageLogic
         protected float m_AmountOfEnergtLeft;
         protected Engine m_Engine;
         protected Wheel[] m_Wheels;
+        protected Factory.eVehicleType m_VehicleType;
 
         
         public Vehicle()
         {
-
         }
         
         
@@ -53,6 +53,20 @@ namespace Ex03.GarageLogic
         }
 
 
+        public bool FillAir()
+        {
+            bool filled = false;
+            foreach(Wheel wheel in m_Wheels)
+            {
+                if (wheel.FillAir())
+                {
+                    filled = true;
+                }
+            }
+            return filled;
+        }
+
+
         public Engine Engine
         {
             get { return m_Engine; }
@@ -61,6 +75,11 @@ namespace Ex03.GarageLogic
         public string LicensePlate
         {
             get { return m_LicesnsePlateNum; }
+        }
+
+        public Factory.eVehicleType VehicleType
+        {
+            get { return m_VehicleType; }
         }
     }
 }

@@ -18,7 +18,18 @@ namespace Ex03.GarageLogic
 
         }
 
-        private void FillAir(float i_AirToFill)
+        public bool FillAir()
+        {
+            bool filled = false;
+            if (m_CurrentPressure < m_MaxPressure)
+            {
+                m_CurrentPressure = m_MaxPressure;
+                filled = true;
+            }
+            return filled;
+        }
+        
+        /*private void FillAir(float i_AirToFill)
         {
             try
             {
@@ -34,7 +45,7 @@ namespace Ex03.GarageLogic
             }
                 
             
-        }
+        }*/
 
 
 

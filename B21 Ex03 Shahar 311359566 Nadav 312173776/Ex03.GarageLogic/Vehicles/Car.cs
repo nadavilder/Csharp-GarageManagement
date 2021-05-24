@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic.Vehicles
         private int m_Doors;
         private Engine.eEngineType m_EngineType;
       
-        public Car(Engine.eEngineType i_EngineType)
+        public Car(Engine.eEngineType i_EngineType, Factory.eVehicleType i_VehicleType): base(i_VehicleType)
         {
             m_EngineType = i_EngineType;
         }

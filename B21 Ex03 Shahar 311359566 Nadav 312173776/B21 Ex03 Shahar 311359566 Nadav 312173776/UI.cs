@@ -48,17 +48,12 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             Console.WriteLine("Please Enter Basic Vehicle Type\n");
             string vehicleTypeString = Console.ReadLine();
             Console.WriteLine("Please Enter License Plate Number");
-            string liecensePlate = Console.ReadLine();         
-            foreach (string number in GarageLogic.m_Clients.Keys)
+            string liecensePlate = Console.ReadLine();
+            if (GarageLogic.m_Clients.ContainsKey(liecensePlate))
             {
-                if (liecensePlate == number)
-                {
-                    GarageLogic.ChangeVehicleStatus(liecensePlate, "In Repair");
-                    Console.WriteLine("Your Vehicle is in Repair");
-
-                }
+                GarageLogic.ChangeVehicleStatus(liecensePlate, "In Repair");
+                Console.WriteLine("Your Vehicle is in Repair");
             }
-
             Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleTypeString);
             newVehicle.LicensePlate = liecensePlate;
             Dictionary<string, string> questions = newVehicle.GetParams();
@@ -76,19 +71,28 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             string ownerName = Console.ReadLine(); 
             Console.WriteLine("Please Enter Phone Number");
             string phoneNum = Console.ReadLine();
-            GarageLogic.AdmitNewVehicle(ownerName, phoneNum, GarageLogic.eVehicleState.In_Repair, newVehicle);
+            GarageLogic.AdmitNewVehicle(ownerName, phoneNum, newVehicle);
+            //While in main?
             PreformUserAction();
         }
 
         //2
         private static void ShowCurrentVehicles()
         {
-            Console.WriteLine("If you like to Filter by Vehicle State, Enter State, else Press Enter ");
-            string filterState = Console.ReadLine();
-            List<string> vehicles = GarageLogic.ShowCurrentVehicles(filterState);
-            foreach(string liecensePlate in vehicles)
+            try
             {
-               Console.WriteLine(liecensePlate);
+                Console.WriteLine("If you like to Filter by Vehicle State, Enter State, else Press Enter ");
+                string filterState = Console.ReadLine();
+                List<string> vehicles = GarageLogic.ShowCurrentVehicles(filterState);
+                foreach(string liecensePlate in vehicles)
+                {
+                   Console.WriteLine(liecensePlate);
+                }
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine($"{ex.Message} is an invalid argument For the filter");
+                ShowCurrentVehicles();
             }
         }
 

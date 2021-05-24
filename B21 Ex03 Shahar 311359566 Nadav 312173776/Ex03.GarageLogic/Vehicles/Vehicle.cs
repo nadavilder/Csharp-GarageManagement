@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
         protected Factory.eVehicleType m_VehicleType;
         protected string m_ModelName;
         protected string  m_LicesnsePlateNum;
-        protected float m_AmountOfEnergtLeft;
+        protected float m_AmountOfEnergyLeft;
         protected Engine m_Engine;
         protected Wheel[] m_Wheels;
         
@@ -22,7 +22,7 @@ namespace Ex03.GarageLogic
         {
             m_ModelName = i_ModelName;
             m_LicesnsePlateNum = i_LicesnsePlateNum;
-            m_AmountOfEnergtLeft = i_AmountOfEnergtLeft;
+            m_AmountOfEnergyLeft = i_AmountOfEnergtLeft;
            // m_Wheels = i_Wheels;
             //m_Engine = i_Engine;
         }
@@ -42,12 +42,12 @@ namespace Ex03.GarageLogic
         }
 
 
+        
         public virtual void SetParams(Dictionary<string, string> i_Answers)
         {
             //m_LicesnsePlateNum = i_licensePlate;
             m_ModelName = i_Answers["Model Name"];
-            m_AmountOfEnergtLeft = float.Parse(i_Answers["Amount of Energy Left"]);
-         
+            m_AmountOfEnergyLeft = float.Parse(i_Answers["Amount of Energy Left"]);
         }
 
 
@@ -67,7 +67,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-           return ($"Vehicle: {m_VehicleType} Model: {m_ModelName} Liecense Plate: {m_LicesnsePlateNum}  Energy: {m_AmountOfEnergtLeft} Engine: {m_Engine.ToString()}\n Wheels: {m_Wheels.ToString()}\n )
+            return ($"Vehicle: {m_VehicleType} Model: {m_ModelName} Liecense Plate: {m_LicesnsePlateNum}  Energy: {m_AmountOfEnergyLeft} Engine: {m_Engine.ToString()}\n Wheels: {m_Wheels.ToString()}\n");
         }
 
         public Engine Engine

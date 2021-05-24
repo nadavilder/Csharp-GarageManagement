@@ -18,13 +18,13 @@ namespace Ex03.GarageLogic
                     newVehicle = new Motorcycle(Engine.eEngineType.Electric);
                     break;
                 case eVehicleType.Fuel_Motorcycle:
-                    newVehicle = new Motorcycle(Engine.eEngineType.fuel);
+                    newVehicle = new Motorcycle(Engine.eEngineType.Fuel);
                     break;
                 case eVehicleType.Electric_Car:
                     newVehicle = new Car(Engine.eEngineType.Electric);
                     break;
                 case eVehicleType.Fuel_Car:
-                    newVehicle = new Car(Engine.eEngineType.fuel);
+                    newVehicle = new Car(Engine.eEngineType.Fuel);
                     break;
                 case eVehicleType.Truck:
                     newVehicle = new Truck();

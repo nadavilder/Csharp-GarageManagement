@@ -5,14 +5,13 @@ namespace Ex03.GarageLogic
 {
     public class GarageLogic
     {
-        //Dictionary of Vehicles ?based on electric and fuel?
         public static readonly Dictionary<string, Client> m_Clients = new Dictionary<string, Client>();
 
 
 
 
         //1
-        public static void AdmitNewVehicle(string i_OwnerName, string i_OwnerPhoneNumber, eVehicleState i_VehicleState, Vehicle i_Vehicle)
+        public static void AdmitNewVehicle(string i_OwnerName, string i_OwnerPhoneNumber, Vehicle i_Vehicle)
         {
             Client newClient = new Client(i_OwnerName, i_OwnerPhoneNumber, i_Vehicle);
             m_Clients.Add(i_Vehicle.LicensePlate, newClient);
@@ -22,6 +21,7 @@ namespace Ex03.GarageLogic
         //2
         public static List<string> ShowCurrentVehicles(string i_VehicleState)
         {
+            //Logic for no filter
             eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             List<string> vehicles = new List<string>();
             foreach(string client in m_Clients.Keys)
@@ -39,12 +39,15 @@ namespace Ex03.GarageLogic
         {
             eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             bool updateSuccesful = false;
-            if (m_Clients.ContainsKey(i_LicensePlate))
+            try
             {
                 m_Clients[i_LicensePlate].VehicleState = VehicleState;
                 updateSuccesful = true;
             }
-
+            catch (KeyNotFoundException ex)
+            {
+                throw (new ArgumentException(i_LicensePlate));
+            }
             return updateSuccesful;
         }
 

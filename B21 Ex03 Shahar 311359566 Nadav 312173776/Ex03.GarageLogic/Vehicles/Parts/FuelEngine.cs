@@ -13,6 +13,8 @@ namespace Ex03.GarageLogic
         {
             m_FuelType = i_FuelType;
         }
+
+
         public static eFuelTypes ParseFuelTypes(string i_FuelType)
         {
             eFuelTypes type;

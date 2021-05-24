@@ -40,5 +40,10 @@ namespace Ex03.GarageLogic
             get { return m_VehicleState; }
             set { m_VehicleState = value; }
         }
+
+        public override string ToString()
+        {
+            return ($"Owner Name: {m_OwnerName} Phone Number: {m_OwnerPhoneNumber} Vehicle State: {m_VehicleState} " + m_Vehicle.ToString());
+        }
     }
 }

@@ -6,13 +6,12 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
+        protected Factory.eVehicleType m_VehicleType;
         protected string m_ModelName;
         protected string  m_LicesnsePlateNum;
         protected float m_AmountOfEnergtLeft;
         protected Engine m_Engine;
         protected Wheel[] m_Wheels;
-        protected Factory.eVehicleType m_VehicleType;
-
         
         public Vehicle()
         {
@@ -66,6 +65,10 @@ namespace Ex03.GarageLogic
             return filled;
         }
 
+        public override string ToString()
+        {
+           return ($"Vehicle: {m_VehicleType} Model: {m_ModelName} Liecense Plate: {m_LicesnsePlateNum}  Energy: {m_AmountOfEnergtLeft} Engine: {m_Engine.ToString()}\n Wheels: {m_Wheels.ToString()}\n )
+        }
 
         public Engine Engine
         {

@@ -37,6 +37,8 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 case "7":
                     ShowVehicleDetails();
                     break;
+                case "8":
+                    break;
             }
         }
             //1
@@ -75,7 +77,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             Console.WriteLine("Please Enter Phone Number");
             string phoneNum = Console.ReadLine();
             GarageLogic.AdmitNewVehicle(ownerName, phoneNum, GarageLogic.eVehicleState.In_Repair, newVehicle);
-
+            PreformUserAction();
         }
 
         //2

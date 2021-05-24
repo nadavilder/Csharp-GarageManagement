@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex03.GarageLogic.Vehicles
+namespace Ex03.GarageLogic
 {
     class Car:Vehicle
     {
@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic.Vehicles
         private int m_Doors;
         private Engine.eEngineType m_EngineType;
       
-        public Car(Engine.eEngineType i_EngineType, Factory.eVehicleType i_VehicleType): base(i_VehicleType)
+        public Car(Engine.eEngineType i_EngineType)
         {
             m_EngineType = i_EngineType;
         }
@@ -43,7 +43,6 @@ namespace Ex03.GarageLogic.Vehicles
             m_Wheels = new Wheel[4];
             for (int i = 0; i < m_Wheels.Length; i++)
             {
-
                 m_Wheels[i] = new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 32f);
             }
             Engine newEngine = null;

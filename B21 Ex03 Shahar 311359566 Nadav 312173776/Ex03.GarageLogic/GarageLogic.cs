@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
     public class GarageLogic
     {
         //Dictionary of Vehicles ?based on electric and fuel?
-        private static readonly Dictionary<string, Client> m_Clients = new Dictionary<string, Client>();
+        public static readonly Dictionary<string, Client> m_Clients = new Dictionary<string, Client>();
 
 
 
@@ -14,13 +14,13 @@ namespace Ex03.GarageLogic
         //1
         public static void AdmitNewVehicle(string i_OwnerName, string i_OwnerPhoneNumber, eVehicleState i_VehicleState, Vehicle i_Vehicle)
         {
-            Client newClient = new Client(i_OwnerName, i_OwnerPhoneNumber, i_VehicleState, i_Vehicle);
+            Client newClient = new Client(i_OwnerName, i_OwnerPhoneNumber, i_Vehicle);
             m_Clients.Add(i_Vehicle.LicensePlate, newClient);
         }
 
 
         //2
-        private static List<string> ShowCurrentVehicles(string i_VehicleState)
+        public static List<string> ShowCurrentVehicles(string i_VehicleState)
         {
             eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             List<string> vehicles = new List<string>();
@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
         }
 
         //3
-        private static bool ChangeVehicleStatus(string i_LicensePlate, string i_VehicleState)
+        public static bool ChangeVehicleStatus(string i_LicensePlate, string i_VehicleState)
         {
             eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             bool updateSuccesful = false;
@@ -49,7 +49,7 @@ namespace Ex03.GarageLogic
         }
 
         //4
-        private static bool FillAir(string i_LicensePlate)
+        public static bool FillAir(string i_LicensePlate)
         {
             bool filled = false;
             try
@@ -65,23 +65,25 @@ namespace Ex03.GarageLogic
         }
 
         //5
-        private static bool FillFuelVehicle(string i_LicensePlate, FuelEngine.eFuelTypes i_FuelType, float i_FillAmount)
+        public static bool FillFuelVehicle(string i_LicensePlate, FuelEngine.eFuelTypes i_FuelType, float i_FillAmount)
         {
             bool filled = false;
             try
             {
-                m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FuelType, i_FillAmount);
+                m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
             }
             catch (KeyNotFoundException ex)
             {
                 throw (new ArgumentException(i_LicensePlate));
             }
+            //TODO
+            //check fuel type
 
             return filled;
         }
 
         //6
-        private static bool ChargeElectricVehicle(string i_LicensePlate, float i_FillAmount)
+        public static bool ChargeElectricVehicle(string i_LicensePlate, float i_FillAmount)
         {
             bool filled = false;
             try
@@ -97,7 +99,7 @@ namespace Ex03.GarageLogic
         }
 
         //7
-        private static string ShowVehicleDetails(string i_LicensePlate)
+        public static string ShowVehicleDetails(string i_LicensePlate)
         {
             try
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class FuelEngine: Engine
+    public class FuelEngine: Engine
     {
         private eFuelTypes m_FuelType;
     
@@ -13,7 +13,28 @@ namespace Ex03.GarageLogic
         {
             m_FuelType = i_FuelType;
         }
-
+        public static eFuelTypes ParseFuelTypes(string i_FuelType)
+        {
+            eFuelTypes type;
+            switch (i_FuelType)
+            {
+                case "Soler":
+                    type = eFuelTypes.Soler;
+                    break;
+                case "Octan95":
+                    type = eFuelTypes.Octan95;
+                    break;
+                case "Octan96":
+                    type = eFuelTypes.Octan96;
+                    break;
+                case "Octan98":
+                    type = eFuelTypes.Octan98;
+                    break;
+                default:
+                    throw new ArgumentException(i_FuelType);
+            }
+            return type;
+        }
         public enum eFuelTypes
         {
             Soler,

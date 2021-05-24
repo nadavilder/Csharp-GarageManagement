@@ -31,7 +31,7 @@ namespace Ex03.GarageLogic
          public virtual Dictionary<string,string> GetParams()
         {
             Dictionary<string, string> questions =  new Dictionary<string, string>();
-            questions.Add("License Plate Number", "");
+           // questions.Add("License Plate Number", "");
             questions.Add("Model Name", "");
             questions.Add("Amount of Energy Left", "");
             questions.Add("Wheel Manufacturer", "");
@@ -45,9 +45,8 @@ namespace Ex03.GarageLogic
 
         public virtual void SetParams(Dictionary<string, string> i_Answers)
         {
-            
+            //m_LicesnsePlateNum = i_licensePlate;
             m_ModelName = i_Answers["Model Name"];
-            m_LicesnsePlateNum = i_Answers["License Plate Number"];
             m_AmountOfEnergtLeft = float.Parse(i_Answers["Amount of Energy Left"]);
          
         }
@@ -75,6 +74,7 @@ namespace Ex03.GarageLogic
         public string LicensePlate
         {
             get { return m_LicesnsePlateNum; }
+            set { m_LicesnsePlateNum = value; }
         }
 
         public Factory.eVehicleType VehicleType

@@ -35,20 +35,17 @@ namespace Ex03.GarageLogic
         }
 
         //3
-        public static bool ChangeVehicleStatus(string i_LicensePlate, string i_VehicleState)
+        public static void ChangeVehicleStatus(string i_LicensePlate, string i_VehicleState)
         {
             eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
-            bool updateSuccesful = false;
             try
             {
                 m_Clients[i_LicensePlate].VehicleState = VehicleState;
-                updateSuccesful = true;
             }
             catch (KeyNotFoundException ex)
             {
-                throw (new ArgumentException(i_LicensePlate));
+                throw (new KeyNotFoundException(i_LicensePlate));
             }
-            return updateSuccesful;
         }
 
         //4
@@ -57,11 +54,11 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
-                m_Clients[i_LicensePlate].Vehicle.FillAir();
+                filled = m_Clients[i_LicensePlate].Vehicle.FillAir();
             }
             catch (KeyNotFoundException ex)
             {
-                throw (new ArgumentException(i_LicensePlate));
+                throw (new KeyNotFoundException(i_LicensePlate));
             }
 
             return filled;
@@ -73,15 +70,16 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
+                if(!/*Check Fuel Type and throw argument exception if not valid*/)
+                {
+                    throw new ArgumentException(i_FuelType.ToString());
+                }
                 m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
             }
             catch (KeyNotFoundException ex)
             {
-                throw (new ArgumentException(i_LicensePlate));
+                throw new KeyNotFoundException(i_LicensePlate);
             }
-            //TODO
-            //check fuel type
-
             return filled;
         }
 
@@ -95,7 +93,7 @@ namespace Ex03.GarageLogic
             }
             catch (KeyNotFoundException ex)
             {
-                throw (new ArgumentException(i_LicensePlate));
+                throw (new KeyNotFoundException(i_LicensePlate));
             }
 
             return filled;
@@ -110,7 +108,7 @@ namespace Ex03.GarageLogic
             }
             catch (KeyNotFoundException ex)
             {
-                throw (new ArgumentException(i_LicensePlate));
+                throw (new KeyNotFoundException(i_LicensePlate));
             }
         }
 
@@ -129,7 +127,7 @@ namespace Ex03.GarageLogic
                     state = eVehicleState.Paid_For;
                     break;
                 default:
-                    throw new ArgumentException(i_VehicleState);
+                    throw new FormatException(i_VehicleState);
             }
             return state;
         }

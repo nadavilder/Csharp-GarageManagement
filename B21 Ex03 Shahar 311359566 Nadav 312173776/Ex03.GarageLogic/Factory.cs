@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic
                     type = eVehicleType.Truck;
                     break;
                 default:
-                    throw new ArgumentException(i_VehicleType);
+                    throw new FormatException(i_VehicleType);
             }
             return type;
         }

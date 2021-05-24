@@ -10,7 +10,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             //Parse user action and call relevant methods
             Console.WriteLine("Hi! What Can I Do For You?\n");
-            Console.WriteLine("Please Choose: 1. Admit Vehicle  \n2.Show Current Vehicles   \n3. Change Vehicle Status" +
+            Console.WriteLine("Please Choose: \n1. Admit Vehicle  \n2.Show Current Vehicles   \n3. Change Vehicle Status" +
                 "\n4.Fill Air  \n5.Fill Fuel \n6.Charge Vehicle  \n7.Show Vehicle Details");
 
             string option = Console.ReadLine();
@@ -37,8 +37,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 case "7":
                     ShowVehicleDetails();
                     break;
-                case "8":
-                    break;
+
             }
         }
             //1
@@ -81,7 +80,8 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             try
             {
-                Console.WriteLine("If you like to Filter by Vehicle State, Enter State, else Press Enter ");
+                //TODO add available statuses
+                Console.WriteLine($"If you like to Filter by Vehicle State from the following statuses..., Enter State, else Press Enter ");
                 string filterState = Console.ReadLine();
                 List<string> vehicles = GarageLogic.ShowCurrentVehicles(filterState);
                 foreach(string liecensePlate in vehicles)
@@ -89,7 +89,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                    Console.WriteLine(liecensePlate);
                 }
             }
-            catch(ArgumentException ex)
+            catch(FormatException ex)
             {
                 Console.WriteLine($"{ex.Message} is an invalid argument For the filter");
                 ShowCurrentVehicles();
@@ -99,35 +99,42 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         //3
         private static void ChangeVehicleStatus()
         {
-            Console.WriteLine("Please Enter License Plate Number");
-            string lisencePlate=Console.ReadLine();
-            Console.WriteLine("Please Enter new Vehicle State");
-            string state = Console.ReadLine();
-            bool updateSucces = GarageLogic.ChangeVehicleStatus(lisencePlate, state);
-            if (!updateSucces)
+            try
             {
-                Console.WriteLine("The Vehicle Don't Exsist");
-            }
-            else
-            {
+                Console.WriteLine("Please Enter License Plate Number");
+                string lisencePlate=Console.ReadLine();
+                Console.WriteLine("Please Enter new Vehicle State");
+                string state = Console.ReadLine();
+                GarageLogic.ChangeVehicleStatus(lisencePlate, state);
                 Console.WriteLine($"The Vehicle's state has been Uptated to {state}");
+            }catch (KeyNotFoundException ex)
+            {
+                Console.WriteLine($"The Vehicle {ex.Message} Does not Exist");
             }
         }
 
         //4
         private static void FillAir()
         {
-            //Get license plate number and fill amount and send to logic
-            Console.WriteLine("Please Enter License Plate Number");
-            string lisencePlate = Console.ReadLine();
-            bool fillSuccess=GarageLogic.FillAir(lisencePlate);
-            if (!fillSuccess)
+            try
             {
-                Console.WriteLine("This Vehicle Don't Exsist");
+                //Get license plate number and fill amount and send to logic
+                Console.WriteLine("Please Enter License Plate Number");
+                string lisencePlate = Console.ReadLine();
+                bool fillSuccess=GarageLogic.FillAir(lisencePlate);
+                if (fillSuccess)
+                {
+                    Console.WriteLine("The wheels of the Vehicle were inflated");
+                }
+                else
+                {
+                    Console.WriteLine("The wheels of the Vehicle were already full");
+
+                }
             }
-            else
+            catch (KeyNotFoundException ex)
             {
-                Console.WriteLine($"The wheels of the Vehicle were inflated");
+                Console.WriteLine($"The Vehicle {ex.Message} Don't Exsist");
             }
         }
 
@@ -136,21 +143,33 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             // Get license plate number, fuel type and amount and send to logic
 
-            Console.WriteLine("Please Enter License Plate Number");
-            string lisencePlate = Console.ReadLine();
-            Console.WriteLine("Please Enter fuel type");
-            string fuelType = Console.ReadLine();
-            Console.WriteLine("Please Enter amout to fill");
-            string fuelAmount = Console.ReadLine();
-            bool fillSuccess = GarageLogic.FillFuelVehicle(lisencePlate,FuelEngine.ParseFuelTypes(fuelType),float.Parse(fuelAmount));
-            if (!fillSuccess)
+            try
             {
-                Console.WriteLine("This Vehicle Don't Exsist");
-            }
-            else
+                Console.WriteLine("Please Enter License Plate Number");
+                string lisencePlate = Console.ReadLine();
+                Console.WriteLine("Please Enter fuel type");
+                string fuelType = Console.ReadLine();
+                Console.WriteLine("Please Enter amout to fill");
+                string fuelAmount = Console.ReadLine();
+                bool fillSuccess = GarageLogic.FillFuelVehicle(lisencePlate,FuelEngine.ParseFuelTypes(fuelType),float.Parse(fuelAmount));
+                if (!fillSuccess)
+                {
+                    Console.WriteLine("This Vehicle Don't Exsist");
+                }
+                else
+                {
+                    Console.WriteLine($"The wheels of the Vehicle were inflated");
+                }
+            }catch (ArgumentException ex)
             {
-                Console.WriteLine($"The wheels of the Vehicle were inflated");
-            }
+                //Print for incorrect Fuel type
+            }catch (KeyNotFoundException ex)
+            {
+                //Print for non existent License plate
+            }/*catch (ValueOutOfRangeException ex)
+            {
+                //Print for too much fuel
+            }*/
         }
 
         //6

@@ -35,12 +35,12 @@ namespace Ex03.GarageLogic
         }
 
         //3
-        public static void ChangeVehicleStatus(string i_LicensePlate, string i_VehicleState)
+        public static void ChangeVehicleStatus(string i_LicensePlate, eVehicleState i_VehicleState)
         {
-            eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
+          //  eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             try
             {
-                m_Clients[i_LicensePlate].VehicleState = VehicleState;
+                m_Clients[i_LicensePlate].VehicleState = i_VehicleState;
             }
             catch (KeyNotFoundException ex)
             {

@@ -73,7 +73,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             string liecensePlate = Console.ReadLine();
             if (GarageLogic.m_Clients.ContainsKey(liecensePlate))
             {
-                GarageLogic.ChangeVehicleStatus(liecensePlate, "In Repair");
+                GarageLogic.ChangeVehicleStatus(liecensePlate, GarageLogic.eVehicleState.In_Repair);
                 Console.WriteLine("Your Vehicle is in Repair");
             }
             Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType);
@@ -127,9 +127,23 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine("Please Enter License Plate Number");
                 string lisencePlate=Console.ReadLine();
-                Console.WriteLine("Please Enter new Vehicle State");
+                Console.WriteLine("Please Choose new Vehicle State");
+                Console.WriteLine("1.In Repair \n2.Repaired \n3.Paid For");
                 string state = Console.ReadLine();
-                GarageLogic.ChangeVehicleStatus(lisencePlate, state);
+                GarageLogic.eVehicleState vehicleState = GarageLogic.eVehicleState.In_Repair;
+                switch (state)
+                {
+                    case "1":
+                        vehicleState = GarageLogic.eVehicleState.In_Repair;
+                        break;
+                    case "2":
+                        vehicleState = GarageLogic.eVehicleState.Repaired;
+                        break;
+                    case "3":
+                        vehicleState = GarageLogic.eVehicleState.Paid_For;
+                        break;
+                        GarageLogic.ChangeVehicleStatus(lisencePlate, vehicleState);
+                }
                 Console.WriteLine($"The Vehicle's state has been Uptated to {state}");
             }catch (KeyNotFoundException ex)
             {

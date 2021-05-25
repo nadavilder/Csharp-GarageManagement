@@ -4,42 +4,45 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Truck: Vehicle
-      
+    class Truck : Vehicle
+
     {
         private bool m_HazardsMat;
         private float m_MaxWeight;
         private Wheel[] m_Wheels = new Wheel[16];
-        public Truck()
+        public Truck(Factory.eVehicleType i_VehicleType)
         {
-
+            m_VehicleType = i_VehicleType;
         }
 
         public override Dictionary<string, string> GetParams()
         {
             Dictionary<string, string> questions = base.GetParams();
             questions.Add("Engine Type", "");
-            questions.Add("Hazardous Materials", "");
+            questions.Add("Carring Hazardous Materials? Enter true of false", "");
             questions.Add("Max Weight", "");
             questions.Add("Current Fuel Liters", "");
-           
+
             return questions;
         }
 
         public override void SetParams(Dictionary<string, string> i_Answers)
         {
             base.SetParams(i_Answers);
-            m_HazardsMat = bool.Parse(i_Answers["Hazardous Materials"]);
+            m_HazardsMat = bool.Parse(i_Answers["Carring Hazardous Materials? Enter true of false"]);
             m_MaxWeight = float.Parse(i_Answers["Max Weight"]);
             m_Wheels = new Wheel[16];
             for (int i = 0; i < m_Wheels.Length; i++)
             {
                 m_Wheels[i] = new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 26f);
             }
-            Engine newEngine = new FuelEngine(FuelEngine.eFuelTypes.Soler, float.Parse(i_Answers["Current Fuel Liters"]), 120f);
+            m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Soler, float.Parse(i_Answers["Current Fuel Liters"]), 120f);
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} Carring Hazardous Materials: {m_HazardsMat}, Max Weight: {m_MaxWeight.ToString()}";
         }
     }
-
-
-    }
+}
 

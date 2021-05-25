@@ -36,8 +36,6 @@ namespace Ex03.GarageLogic
             questions.Add("Wheel Manufacturer", "");
             questions.Add("Wheel's Current Air Pressure", "");
             
-
-
             return questions;
         }
 
@@ -48,6 +46,7 @@ namespace Ex03.GarageLogic
             //m_LicesnsePlateNum = i_licensePlate;
             m_ModelName = i_Answers["Model Name"];
             m_AmountOfEnergyLeft = float.Parse(i_Answers["Amount of Energy Left"]);
+           
         }
 
 
@@ -67,7 +66,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return ($"Vehicle: {m_VehicleType} Model: {m_ModelName} Liecense Plate: {m_LicesnsePlateNum}  Energy: {m_AmountOfEnergyLeft} Engine: {m_Engine.ToString()}\n Wheels: {m_Wheels.ToString()}\n");
+            return ($"Vehicle: {m_VehicleType}   Model: {m_ModelName}   Liecense Plate: {m_LicesnsePlateNum}  Energy: {m_AmountOfEnergyLeft}\nEngine: {m_Engine}\nNumber of Wheels:  {m_Wheels.Length}  Wheels Details: {m_Wheels[0]}\n");
         }
 
         public Engine Engine

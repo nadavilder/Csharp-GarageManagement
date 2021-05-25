@@ -10,8 +10,9 @@ namespace Ex03.GarageLogic
         private int m_EngineVolume;
         private Engine.eEngineType m_EngineType;
 
-        public Motorcycle(Engine.eEngineType i_EngineType)
+        public Motorcycle(Engine.eEngineType i_EngineType,Factory.eVehicleType i_VehicleType)
         {
+            m_VehicleType = i_VehicleType;
             m_EngineType = i_EngineType;
         }
         
@@ -45,23 +46,24 @@ namespace Ex03.GarageLogic
             {
                 m_Wheels[i]=new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 30f);
             }
-            Engine newEngine = null;
+           
             switch (m_EngineType)
             {
                 case Engine.eEngineType.Electric:
-                    newEngine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 1.8f);
+                    m_Engine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 1.8f);
                     break;
                 case Engine.eEngineType.Fuel:
-                    newEngine = new FuelEngine(FuelEngine.eFuelTypes.Octan98, float.Parse(i_Answers["Current Fuel Liters"]), 6f);
+                    m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan98, float.Parse(i_Answers["Current Fuel Liters"]), 6f);
                     break;
             }
+
         }
 
 
         public override string ToString()
         {
 
-            return $"{base.ToString()} License Type: {m_LicenseType}, Engine Volume: {m_EngineVolume.ToString()}";
+            return $"{base.ToString()} License Type: {m_LicenseType}, Engine Volume: {m_EngineVolume}";
         }
     }
 }

@@ -10,8 +10,9 @@ namespace Ex03.GarageLogic
         private int m_Doors;
         private Engine.eEngineType m_EngineType;
       
-        public Car(Engine.eEngineType i_EngineType)
+        public Car(Engine.eEngineType i_EngineType, Factory.eVehicleType i_VehicleType)
         {
+            m_VehicleType = i_VehicleType;
             m_EngineType = i_EngineType;
         }
 
@@ -45,19 +46,22 @@ namespace Ex03.GarageLogic
             {
                 m_Wheels[i] = new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 32f);
             }
-            Engine newEngine = null;
+           
             switch (m_EngineType)
             {
                 case Engine.eEngineType.Electric:
-                    newEngine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 3.2f);
+                    m_Engine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 3.2f);
                     break;
                 case Engine.eEngineType.Fuel:
-                    newEngine = new FuelEngine(FuelEngine.eFuelTypes.Octan95, float.Parse(i_Answers["Current Fuel Liters"]), 45f);
+                    m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan95, float.Parse(i_Answers["Current Fuel Liters"]), 45f);
                     break;
             }
 
         }
 
-
+        public override string ToString()
+        {
+            return $"{base.ToString()} Car Color: {m_Color}, Door Number: {m_Doors}";
+        }
     }
 }

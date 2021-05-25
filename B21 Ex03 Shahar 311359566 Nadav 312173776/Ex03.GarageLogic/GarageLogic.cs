@@ -70,10 +70,10 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
-                if(!/*Check Fuel Type and throw argument exception if not valid*/)
+               /* if (!Check Fuel Type and throw argument exception if not valid)
                 {
                     throw new ArgumentException(i_FuelType.ToString());
-                }
+                }*/
                 m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
             }
             catch (KeyNotFoundException ex)

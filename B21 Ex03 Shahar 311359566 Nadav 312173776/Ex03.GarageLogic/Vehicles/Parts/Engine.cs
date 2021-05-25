@@ -32,7 +32,11 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException("illegal value");
             }
         }
-            
+
+        public override string ToString()
+        {
+            return ($"Current Energy Amount: {m_CurrentEnergyAmount} Max Energy Amount: {m_MaxEnergyAmount}");
+        }
 
         public enum eEngineType
         {

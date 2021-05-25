@@ -37,6 +37,12 @@ namespace Ex03.GarageLogic
             }
             return type;
         }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} Fuel Type: { m_FuelType}";
+        }
+
         public enum eFuelTypes
         {
             Soler,

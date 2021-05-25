@@ -7,27 +7,27 @@ namespace Ex03.GarageLogic
     public class Factory
     {
         
-        public static Vehicle CreateVehicleFromData(string i_Type)
+        public static Vehicle CreateVehicleFromData(eVehicleType i_VehicleType)
         {
-            eVehicleType vehicleType = ParseVehicleType(i_Type);
+           // eVehicleType vehicleType = ParseVehicleType(i_Type);
             Vehicle newVehicle = null;
 
-            switch (vehicleType)
+            switch (i_VehicleType)
             {
                 case eVehicleType.Electric_Motorcycle:
-                    newVehicle = new Motorcycle(Engine.eEngineType.Electric);
+                    newVehicle = new Motorcycle(Engine.eEngineType.Electric,i_VehicleType);
                     break;
                 case eVehicleType.Fuel_Motorcycle:
-                    newVehicle = new Motorcycle(Engine.eEngineType.Fuel);
+                    newVehicle = new Motorcycle(Engine.eEngineType.Fuel,i_VehicleType);
                     break;
                 case eVehicleType.Electric_Car:
-                    newVehicle = new Car(Engine.eEngineType.Electric);
+                    newVehicle = new Car(Engine.eEngineType.Electric,i_VehicleType);
                     break;
                 case eVehicleType.Fuel_Car:
-                    newVehicle = new Car(Engine.eEngineType.Fuel);
+                    newVehicle = new Car(Engine.eEngineType.Fuel,i_VehicleType);
                     break;
                 case eVehicleType.Truck:
-                    newVehicle = new Truck();
+                    newVehicle = new Truck(i_VehicleType);
                     break;
 
 
@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
             return newVehicle;
         }
         
-        public static eVehicleType ParseVehicleType(string i_VehicleType)
+     /*   public static eVehicleType ParseVehicleType(string i_VehicleType)
         {
             eVehicleType type;
             switch (i_VehicleType)
@@ -59,7 +59,7 @@ namespace Ex03.GarageLogic
                     throw new FormatException(i_VehicleType);
             }
             return type;
-        }
+        }*/
         public enum eVehicleType
         {
             Electric_Motorcycle,

@@ -7,9 +7,8 @@ namespace Ex03.GarageLogic
     public class Factory
     {
         
-        public static Vehicle CreateVehicleFromData(string i_VehicleType)
+        public static Vehicle CreateVehicleFromData(string i_VehicleType, string i_LicensePlate)
         {
-            //eVehicleType vehicleType = ParseVehicleType(i_VehicleType);
             eVehicleType vehicleType;
             bool validType = Enum.TryParse(i_VehicleType, out vehicleType);
 
@@ -20,19 +19,19 @@ namespace Ex03.GarageLogic
                 switch (vehicleType)
                 {
                     case eVehicleType.Electric_Motorcycle:
-                        newVehicle = new Motorcycle(Engine.eEngineType.Electric, vehicleType);
+                        newVehicle = new Motorcycle(vehicleType, Engine.eEngineType.Electric, i_LicensePlate);
                         break;
                     case eVehicleType.Fuel_Motorcycle:
-                        newVehicle = new Motorcycle(Engine.eEngineType.Fuel, vehicleType);
+                        newVehicle = new Motorcycle(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
                         break;
                     case eVehicleType.Electric_Car:
-                        newVehicle = new Car(Engine.eEngineType.Electric, vehicleType);
+                        newVehicle = new Car(vehicleType, Engine.eEngineType.Electric, i_LicensePlate);
                         break;
                     case eVehicleType.Fuel_Car:
-                        newVehicle = new Car(Engine.eEngineType.Fuel, vehicleType);
+                        newVehicle = new Car(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
                         break;
                     case eVehicleType.Truck:
-                        newVehicle = new Truck(vehicleType);
+                        newVehicle = new Truck(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
                         break;
                 }
                 return newVehicle;

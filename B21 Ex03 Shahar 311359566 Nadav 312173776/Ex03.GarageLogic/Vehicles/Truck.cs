@@ -12,9 +12,9 @@ namespace Ex03.GarageLogic
         private const float MAXFUELCAPACITY = 120F;
         private const float MAXWHEELAIRCAPACITY = 28F;
         private const int NUMOFWHEELS = 16;
-        public Truck(Factory.eVehicleType i_VehicleType)
+        public Truck(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
+
         {
-            m_VehicleType = i_VehicleType;
         }
 
         public override Dictionary<string, string> GetParams()

@@ -51,7 +51,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return ($"Manufacturer: {m_Manufacturer} Current Air Pressure: {m_CurrentPressure}  Max Air Pressure: {m_MaxPressure}");
+            return ($"Manufacturer: {m_Manufacturer} , Current Air Pressure: {m_CurrentPressure} , Max Air Pressure: {m_MaxPressure}");
         }
 
         public float AirMissing

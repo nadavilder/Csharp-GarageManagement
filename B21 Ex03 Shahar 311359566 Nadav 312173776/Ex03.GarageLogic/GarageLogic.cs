@@ -21,16 +21,28 @@ namespace Ex03.GarageLogic
         //2
         public static List<string> ShowCurrentVehicles(string i_VehicleState)
         {
-            //Logic for no filter
-            //List<string> questionsStrings = new List<string>(questions.Keys);
-            eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
+           
             List<string> vehicles = new List<string>();
-            foreach(string client in m_Clients.Keys)
+            
+            if (i_VehicleState == "")
             {
-                if (m_Clients[client].VehicleState == VehicleState)
+                foreach (string client in m_Clients.Keys)
                 {
-                    vehicles.Add(client);
+                        vehicles.Add(client);
                 }
+
+            }
+            else
+            {
+                eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
+                foreach(string client in m_Clients.Keys)
+                {
+                    if (m_Clients[client].VehicleState == VehicleState)
+                    {
+                        vehicles.Add(client);
+                    }
+                }
+
             }
             return vehicles;
         }
@@ -117,13 +129,13 @@ namespace Ex03.GarageLogic
             eVehicleState state;
             switch (i_VehicleState)
             {
-                case "In Repair":
+                case "In_Repair":
                     state = eVehicleState.In_Repair;
                     break;
                 case "Repaired":
                     state = eVehicleState.Repaired;
                     break;
-                case "Paid For":
+                case "Paid_For":
                     state = eVehicleState.Paid_For;
                     break;
                 default:

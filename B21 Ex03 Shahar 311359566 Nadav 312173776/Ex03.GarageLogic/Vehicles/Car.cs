@@ -139,7 +139,7 @@ namespace Ex03.GarageLogic
         
         public override string ToString()
         {
-            return $"{base.ToString()} Car Color: {m_Color}, Door Number: {m_NumOfDoors}";
+            return $"{base.ToString()}Car Color: {m_Color} , Door Number: {m_NumOfDoors}";
         }
 
         private enum eCarColor

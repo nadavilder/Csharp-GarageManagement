@@ -76,7 +76,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return $"{base.ToString()} Carring Hazardous Materials: {m_HazardsMat}, Max Weight: {m_MaxWeight.ToString()}";
+            return $"{base.ToString()}Carring Hazardous Materials: {m_HazardsMat} , Max Weight: {m_MaxWeight.ToString()}";
         }
     }
 }

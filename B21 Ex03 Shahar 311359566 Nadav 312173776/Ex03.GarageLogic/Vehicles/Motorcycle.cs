@@ -116,7 +116,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return $"{base.ToString()} License Type: {m_LicenseType}, Engine Volume: {m_EngineVolume}";
+            return $"{base.ToString()}License Type: {m_LicenseType} , Engine Volume: {m_EngineVolume}";
         }
 
         private eLicenseType ParseLicenseType(string i_LicenseType)

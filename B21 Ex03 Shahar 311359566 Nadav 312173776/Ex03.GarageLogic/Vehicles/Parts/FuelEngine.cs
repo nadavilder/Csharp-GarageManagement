@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return $"{base.ToString()} Fuel Type: { m_FuelType}";
+            return $"{base.ToString()} , Fuel Type: { m_FuelType}";
         }
 
         public enum eFuelTypes

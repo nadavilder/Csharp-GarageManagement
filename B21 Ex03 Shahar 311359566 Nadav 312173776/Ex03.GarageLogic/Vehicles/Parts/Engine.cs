@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return ($"Current Energy Amount: {m_CurrentEnergyAmount} Max Energy Amount: {m_MaxEnergyAmount}");
+            return ($"Current Energy Amount: {m_CurrentEnergyAmount} , Max Energy Amount: {m_MaxEnergyAmount}");
         }
 
 

@@ -9,9 +9,10 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         public static void PreformUserAction()
         {
             //Parse user action and call relevant methods
+            Console.WriteLine();
             Console.WriteLine("Hi! What Can I Do For You?\n");
-            Console.WriteLine("Please Choose: \n1. Admit Vehicle  \n2.Show Current Vehicles   \n3. Change Vehicle Status" +
-                "\n4.Fill Air  \n5.Fill Fuel \n6.Charge Vehicle  \n7.Show Vehicle Details  \n8.Exit");
+            Console.WriteLine("Please Choose: \n1. Admit Vehicle  \n2. Show Current Vehicles   \n3. Change Vehicle Status" +
+                "\n4. Fill Air  \n5. Fill Fuel \n6. Charge Vehicle  \n7. Show Vehicle Details  \n8. Exit");
 
             string option = Console.ReadLine();
             switch (option)
@@ -159,10 +160,11 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 //TODO add available statuses
                 Console.WriteLine($"If you like to Filter by Vehicle State from the following statuses..., Enter State, else Press Enter ");
-                /*foreach (string type in Enum.GetNames(typeof(Factory.eVehicleType)))
+                foreach (string type in Enum.GetNames(typeof(GarageLogic.eVehicleState)))
                 {
                     Console.WriteLine(type);
-                }*/
+                }
+                Console.WriteLine();
                 string filterState = Console.ReadLine();
                 List<string> vehicles = GarageLogic.ShowCurrentVehicles(filterState);
                 foreach(string liecensePlate in vehicles)
@@ -184,7 +186,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine("Please Enter License Plate Number");
                 string licensePlate = Console.ReadLine();
-                Console.WriteLine("Please Choose new Vehicle State");
+                Console.WriteLine("Please Choose new Vehicle State (Enter number 1-3)");
                 Console.WriteLine("1.In Repair \n2.Repaired \n3.Paid For");
                 string state = Console.ReadLine();
                 GarageLogic.eVehicleState vehicleState = GarageLogic.eVehicleState.In_Repair;
@@ -201,7 +203,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                         break;
                 }
                 GarageLogic.ChangeVehicleStatus(licensePlate, vehicleState);
-                Console.WriteLine($"The Vehicle's state has been Uptated to {state}");
+                Console.WriteLine($"The Vehicle's state has been Uptated to {vehicleState}");
             }catch (KeyNotFoundException ex)
             {
                 Console.WriteLine($"The Vehicle {ex.Message} Does not Exist");
@@ -297,6 +299,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine("Please Enter License Plate Number");
                 string lisencePlate = Console.ReadLine();
+                Console.WriteLine();
                 string details = GarageLogic.ShowVehicleDetails(lisencePlate);
                 Console.WriteLine(details);
             }

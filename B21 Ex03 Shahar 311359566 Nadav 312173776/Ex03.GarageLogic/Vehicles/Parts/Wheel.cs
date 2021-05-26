@@ -32,19 +32,12 @@ namespace Ex03.GarageLogic
         public bool FillAir(float i_AirToFill)
         {
             bool filled = false;
-            try
+            if (m_CurrentPressure + i_AirToFill <= m_MaxPressure)
             {
-                if (m_CurrentPressure + i_AirToFill <= m_MaxPressure)
-                {
-                    m_CurrentPressure += i_AirToFill;
-                    filled = true;
-                }
-                else throw new ValueOutOfRangeException("The current + the value is more then Maximum pressure");
+                m_CurrentPressure += i_AirToFill;
+                filled = true;
             }
-            catch
-            {
-                throw new ArgumentException("illegal value");
-            }
+            else throw new ValueOutOfRangeException("The current + the value is more then Maximum pressure");
             return filled;
 
         }

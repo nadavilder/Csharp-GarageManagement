@@ -8,24 +8,22 @@ namespace Ex03.GarageLogic
     {
         protected Factory.eVehicleType m_VehicleType;
         protected string m_ModelName;
-        protected string  m_LicesnsePlateNum;
+        protected readonly string  r_LicesnsePlateNum;
         protected float m_AmountOfEnergyLeft;
         protected Engine m_Engine;
         protected Wheel[] m_Wheels;
+        protected Engine.eEngineType m_EngineType;
 
-        public Vehicle()
+        public Vehicle(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate)
         {
+            m_VehicleType = i_VehicleType;
+            m_EngineType = i_EngineType;
+            r_LicesnsePlateNum = i_LicensePlate;
+
         }
         
         
-        public Vehicle(string i_ModelName, string i_LicesnsePlateNum, float i_AmountOfEnergtLeft, Wheel[] i_Wheels, Engine i_Engine)
-        {
-            m_ModelName = i_ModelName;
-            m_LicesnsePlateNum = i_LicesnsePlateNum;
-            m_AmountOfEnergyLeft = i_AmountOfEnergtLeft;
-           // m_Wheels = i_Wheels;
-            //m_Engine = i_Engine;
-        }
+
 
          public virtual Dictionary<string,string> GetParams()
         {
@@ -106,7 +104,11 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
+<<<<<<< HEAD
             return ($"\nVehicle: {m_VehicleType} , Model: {m_ModelName} , Liecense Plate: {m_LicesnsePlateNum} , Energy: {AmountOfEnergyLeft}\nEngine: {m_Engine} , \nWheels Details: Number of Wheels: {m_Wheels.Length} , {m_Wheels[0]}\n");
+=======
+            return ($"Vehicle: {m_VehicleType}   Model: {m_ModelName}   Liecense Plate: {r_LicesnsePlateNum}  Energy: {m_AmountOfEnergyLeft}\nEngine: {m_Engine}\nNumber of Wheels:  {m_Wheels.Length}  Wheels Details: {m_Wheels[0]}\n");
+>>>>>>> 849d9363c1c85e7cfe82329712f8e296780fc76f
         }
 
         public Engine Engine
@@ -121,13 +123,17 @@ namespace Ex03.GarageLogic
 
         public string LicensePlate
         {
-            get { return m_LicesnsePlateNum; }
-            set { m_LicesnsePlateNum = value; }
+            get { return r_LicesnsePlateNum; }
         }
 
         public Factory.eVehicleType VehicleType
         {
             get { return m_VehicleType; }
+        }
+
+        public Engine.eEngineType EngineType
+        {
+            get { return m_EngineType; }
         }
     }
 }

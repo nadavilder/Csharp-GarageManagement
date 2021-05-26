@@ -8,17 +8,14 @@ namespace Ex03.GarageLogic
     {
         private eLicenseType m_LicenseType;
         private int m_EngineVolume;
-        private Engine.eEngineType m_EngineType;
         private const float MAXBATTERYCHARGE = 1.8F;
         private const float MAXFUELCAPACITY = 6F;
         private const float MAXWHEELAIRCAPACITY = 30F;
         private const int NUMOFWHEELS = 2;
 
 
-        public Motorcycle(Engine.eEngineType i_EngineType,Factory.eVehicleType i_VehicleType)
+        public Motorcycle(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate): base(i_VehicleType, i_EngineType, i_LicensePlate)
         {
-            m_VehicleType = i_VehicleType;
-            m_EngineType = i_EngineType;
         }
         
 

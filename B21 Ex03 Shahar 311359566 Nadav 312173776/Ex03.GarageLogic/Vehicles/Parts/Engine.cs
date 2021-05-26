@@ -16,21 +16,16 @@ namespace Ex03.GarageLogic
             m_MaxEnergyAmount = i_MaxEnergyAmount;
         }
 
-        public void FillEngine(float i_FillAmount)
+        public bool FillEngine(float i_FillAmount)
         {
-
-            try
+            bool filled = false;
+            if (m_CurrentEnergyAmount + i_FillAmount <= m_MaxEnergyAmount)
             {
-                if (m_CurrentEnergyAmount + i_FillAmount <= m_MaxEnergyAmount)
-                {
-                    m_CurrentEnergyAmount += i_FillAmount;
-                }
-                else throw new ValueOutOfRangeException("The current + the value is more then Maximum tank amount");
+                m_CurrentEnergyAmount += i_FillAmount;
+                filled = true;
             }
-            catch
-            {
-                throw new ArgumentException("illegal value");
-            }
+            else throw new ValueOutOfRangeException("The current + the value is more then Maximum tank amount");
+            return filled;
         }
 
 

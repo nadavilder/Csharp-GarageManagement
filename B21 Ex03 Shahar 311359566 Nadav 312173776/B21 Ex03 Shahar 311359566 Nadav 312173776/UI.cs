@@ -65,8 +65,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 }
                 string vehicleType = Console.ReadLine();
                 //Add License Plate To constructor
-                Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType);
-                newVehicle.LicensePlate = liecensePlate;
+                Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType, liecensePlate);
                 Dictionary<string, string> questions = newVehicle.GetParams();
                 List<string> questionsStrings = new List<string>(questions.Keys);
                 int i = 0;
@@ -217,8 +216,8 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 //Get license plate number and fill amount and send to logic
                 Console.WriteLine("Please Enter License Plate Number");
-                string lisencePlate = Console.ReadLine();
-                bool fillSuccess=GarageLogic.FillAir(lisencePlate);
+                string licensePlate = Console.ReadLine();
+                bool fillSuccess=GarageLogic.FillAir(licensePlate);
                 if (fillSuccess)
                 {
                     Console.WriteLine("The wheels of the Vehicle were inflated");
@@ -228,6 +227,10 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     Console.WriteLine("The wheels of the Vehicle were already full");
 
                 }
+            }
+            catch (ValueOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             catch (KeyNotFoundException ex)
             {
@@ -240,35 +243,38 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             // Get license plate number, fuel type and amount and send to logic
 
+            Console.WriteLine("Please Enter License Plate Number");
+            string licensePlate = Console.ReadLine();
+            Console.WriteLine("Please Enter fuel type");
+            string fuelType = Console.ReadLine();
+            Console.WriteLine("Please Enter amout to fill");
+            string fuelAmount = Console.ReadLine();
             try
             {
-                Console.WriteLine("Please Enter License Plate Number");
-                string lisencePlate = Console.ReadLine();
-                Console.WriteLine("Please Enter fuel type");
-                string fuelType = Console.ReadLine();
-                Console.WriteLine("Please Enter amout to fill");
-                string fuelAmount = Console.ReadLine();
-                bool fillSuccess = GarageLogic.FillFuelVehicle(lisencePlate,FuelEngine.ParseFuelTypes(fuelType),float.Parse(fuelAmount));
-                if (!fillSuccess)
+                if(GarageLogic.FillFuelVehicle(licensePlate,FuelEngine.ParseFuelTypes(fuelType),float.Parse(fuelAmount)))
                 {
-                    Console.WriteLine("This Vehicle Don't Exsist");
+                    Console.WriteLine($"The Vehicle was fueled with {fuelAmount} liters");
                 }
                 else
                 {
-                    Console.WriteLine($"The wheels of the Vehicle were inflated");
+                    Console.WriteLine("Vehicle's fuel tank was already full");
                 }
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             catch (ArgumentException ex)
             {
-                //Print for incorrect Fuel type
+                Console.WriteLine(ex.Message);
             }
             catch (KeyNotFoundException ex)
             {
-                //Print for non existent License plate
+                Console.WriteLine($"The Vehicle {ex.Message} Don't Exsist");
             }
             catch (ValueOutOfRangeException ex)
             {
-                //Print for too much fuel
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -277,19 +283,37 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
 
             Console.WriteLine("Please Enter License Plate Number");
-            string lisencePlate = Console.ReadLine();
+            string licensePlate = Console.ReadLine();
             Console.WriteLine("Please Enter Minutes to Charge");
             string minutes = Console.ReadLine();
             try
             {
-                GarageLogic.ChargeElectricVehicle(lisencePlate, float.Parse(minutes));
-                Console.WriteLine($"The car was succesfully charged");
+                if (GarageLogic.ChargeElectricVehicle(licensePlate, float.Parse(minutes)))
+                {
+                    Console.WriteLine($"The Vehicle was Charged with {minutes} minutes of battery charge");
+                }
+                else
+                {
+                    Console.WriteLine("Vehicle's battey was already full");
+                }
             }
-            catch(KeyNotFoundException ex)
+            catch (FormatException ex)
             {
-                Console.WriteLine($"This Vehicle {lisencePlate} Doesn't Exsist");
-
+                Console.WriteLine(ex.Message);
             }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                Console.WriteLine($"The Vehicle {ex.Message} Don't Exsist");
+            }
+            catch (ValueOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
         //7
@@ -298,9 +322,14 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             try
             {
                 Console.WriteLine("Please Enter License Plate Number");
+<<<<<<< HEAD
                 string lisencePlate = Console.ReadLine();
                 Console.WriteLine();
                 string details = GarageLogic.ShowVehicleDetails(lisencePlate);
+=======
+                string licensePlate = Console.ReadLine();
+                string details = GarageLogic.ShowVehicleDetails(licensePlate);
+>>>>>>> 849d9363c1c85e7cfe82329712f8e296780fc76f
                 Console.WriteLine(details);
             }
             catch(KeyNotFoundException ex)

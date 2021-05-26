@@ -33,7 +33,7 @@ namespace Ex03.GarageLogic
                     type = eFuelTypes.Octan98;
                     break;
                 default:
-                    throw new FormatException(i_FuelType);
+                    throw new FormatException($"{i_FuelType} is not a valid fuel type");
             }
             return type;
         }
@@ -41,6 +41,11 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             return $"{base.ToString()} , Fuel Type: { m_FuelType}";
+        }
+
+        public eFuelTypes FuelType
+        {
+            get { return m_FuelType; }
         }
 
         public enum eFuelTypes

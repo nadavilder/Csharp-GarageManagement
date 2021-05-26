@@ -8,17 +8,14 @@ namespace Ex03.GarageLogic
     {
         private eCarColor m_Color;
         private int m_NumOfDoors;
-        private Engine.eEngineType m_EngineType;
         private const float MAXBATTERYCHARGE = 3.2F;
         private const float MAXFUELCAPACITY = 45F;
         private const float MAXWHEELAIRCAPACITY = 32F;
         private const int NUMOFWHEELS = 4;
 
 
-        public Car(Engine.eEngineType i_EngineType, Factory.eVehicleType i_VehicleType)
+        public Car(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
         {
-            m_VehicleType = i_VehicleType;
-            m_EngineType = i_EngineType;
         }
 
         public override Dictionary<string, string> GetParams()

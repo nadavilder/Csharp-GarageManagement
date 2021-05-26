@@ -82,11 +82,23 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
-               /* if (!Check Fuel Type and throw argument exception if not valid)
+
+               if(m_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Fuel)
                 {
-                    throw new ArgumentException(i_FuelType);
-                }*/
-                m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                    FuelEngine engine = m_Clients[i_LicensePlate].Vehicle.Engine as FuelEngine;
+                    if(engine.FuelType == i_FuelType)
+                    {
+                        filled = m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Wrong Fuel Type");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("Vehicle is not a fuel based vehicle");
+                }
             }
             catch (KeyNotFoundException ex)
             {
@@ -101,7 +113,14 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
-                m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                if(m_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Electric)
+                {
+                    filled = m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                }
+                else
+                {
+                    throw new ArgumentException("Vehicle is not an electric vehicle");
+                }
             }
             catch (KeyNotFoundException ex)
             {

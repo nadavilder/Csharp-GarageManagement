@@ -322,14 +322,10 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             try
             {
                 Console.WriteLine("Please Enter License Plate Number");
-<<<<<<< HEAD
                 string lisencePlate = Console.ReadLine();
                 Console.WriteLine();
                 string details = GarageLogic.ShowVehicleDetails(lisencePlate);
-=======
-                string licensePlate = Console.ReadLine();
-                string details = GarageLogic.ShowVehicleDetails(licensePlate);
->>>>>>> 849d9363c1c85e7cfe82329712f8e296780fc76f
+
                 Console.WriteLine(details);
             }
             catch(KeyNotFoundException ex)

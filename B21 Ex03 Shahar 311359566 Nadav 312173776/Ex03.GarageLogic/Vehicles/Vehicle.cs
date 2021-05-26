@@ -104,11 +104,9 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-<<<<<<< HEAD
-            return ($"\nVehicle: {m_VehicleType} , Model: {m_ModelName} , Liecense Plate: {m_LicesnsePlateNum} , Energy: {AmountOfEnergyLeft}\nEngine: {m_Engine} , \nWheels Details: Number of Wheels: {m_Wheels.Length} , {m_Wheels[0]}\n");
-=======
-            return ($"Vehicle: {m_VehicleType}   Model: {m_ModelName}   Liecense Plate: {r_LicesnsePlateNum}  Energy: {m_AmountOfEnergyLeft}\nEngine: {m_Engine}\nNumber of Wheels:  {m_Wheels.Length}  Wheels Details: {m_Wheels[0]}\n");
->>>>>>> 849d9363c1c85e7cfe82329712f8e296780fc76f
+
+            return ($"\nVehicle: {m_VehicleType} , Model: {m_ModelName} , Liecense Plate: {r_LicesnsePlateNum} , Energy: {AmountOfEnergyLeft}\nEngine: {m_Engine} , \nWheels Details: Number of Wheels: {m_Wheels.Length} , {m_Wheels[0]}\n");
+
         }
 
         public Engine Engine

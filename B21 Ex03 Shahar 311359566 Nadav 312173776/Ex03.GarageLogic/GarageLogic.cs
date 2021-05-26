@@ -22,6 +22,7 @@ namespace Ex03.GarageLogic
         public static List<string> ShowCurrentVehicles(string i_VehicleState)
         {
             //Logic for no filter
+            //List<string> questionsStrings = new List<string>(questions.Keys);
             eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             List<string> vehicles = new List<string>();
             foreach(string client in m_Clients.Keys)
@@ -37,7 +38,6 @@ namespace Ex03.GarageLogic
         //3
         public static void ChangeVehicleStatus(string i_LicensePlate, eVehicleState i_VehicleState)
         {
-          //  eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
             try
             {
                 m_Clients[i_LicensePlate].VehicleState = i_VehicleState;
@@ -72,7 +72,7 @@ namespace Ex03.GarageLogic
             {
                /* if (!Check Fuel Type and throw argument exception if not valid)
                 {
-                    throw new ArgumentException(i_FuelType.ToString());
+                    throw new ArgumentException(i_FuelType);
                 }*/
                 m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
             }

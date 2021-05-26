@@ -11,32 +11,36 @@ namespace Ex03.GarageLogic
         {
             //eVehicleType vehicleType = ParseVehicleType(i_VehicleType);
             eVehicleType vehicleType;
-            Enum.TryParse(i_VehicleType, out vehicleType);
+            bool validType = Enum.TryParse(i_VehicleType, out vehicleType);
 
-
-            Vehicle newVehicle = null;
-
-            switch (vehicleType)
+            if (validType)
             {
-                case eVehicleType.Electric_Motorcycle:
-                    newVehicle = new Motorcycle(Engine.eEngineType.Electric, vehicleType);
-                    break;
-                case eVehicleType.Fuel_Motorcycle:
-                    newVehicle = new Motorcycle(Engine.eEngineType.Fuel, vehicleType);
-                    break;
-                case eVehicleType.Electric_Car:
-                    newVehicle = new Car(Engine.eEngineType.Electric, vehicleType);
-                    break;
-                case eVehicleType.Fuel_Car:
-                    newVehicle = new Car(Engine.eEngineType.Fuel, vehicleType);
-                    break;
-                case eVehicleType.Truck:
-                    newVehicle = new Truck(vehicleType);
-                    break;
+                Vehicle newVehicle = null;
 
-
+                switch (vehicleType)
+                {
+                    case eVehicleType.Electric_Motorcycle:
+                        newVehicle = new Motorcycle(Engine.eEngineType.Electric, vehicleType);
+                        break;
+                    case eVehicleType.Fuel_Motorcycle:
+                        newVehicle = new Motorcycle(Engine.eEngineType.Fuel, vehicleType);
+                        break;
+                    case eVehicleType.Electric_Car:
+                        newVehicle = new Car(Engine.eEngineType.Electric, vehicleType);
+                        break;
+                    case eVehicleType.Fuel_Car:
+                        newVehicle = new Car(Engine.eEngineType.Fuel, vehicleType);
+                        break;
+                    case eVehicleType.Truck:
+                        newVehicle = new Truck(vehicleType);
+                        break;
+                }
+                return newVehicle;
             }
-            return newVehicle;
+            else
+            {
+                throw new ArgumentException("Invalid Vehicle type");
+            }
         }
 
         public static eVehicleType ParseVehicleType(string i_VehicleType)

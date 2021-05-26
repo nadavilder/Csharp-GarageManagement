@@ -63,6 +63,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     Console.WriteLine(type);
                 }
                 string vehicleType = Console.ReadLine();
+                //Add License Plate To constructor
                 Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType);
                 newVehicle.LicensePlate = liecensePlate;
                 Dictionary<string, string> questions = newVehicle.GetParams();
@@ -72,10 +73,10 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 {
                     try
                     {
-                    string question = questionsStrings[i];
-                    Console.WriteLine($"Please Enter {question}{questions[question]}");
-                    string answer = Console.ReadLine();
-                    newVehicle.SetParam(question, answer);
+                        string question = questionsStrings[i];
+                        Console.WriteLine($"Please Enter {question}{questions[question]}");
+                        string answer = Console.ReadLine();
+                        newVehicle.SetParam(question, answer);
                         i++;
                     }
                     catch(FormatException ex)
@@ -158,6 +159,10 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 //TODO add available statuses
                 Console.WriteLine($"If you like to Filter by Vehicle State from the following statuses..., Enter State, else Press Enter ");
+                /*foreach (string type in Enum.GetNames(typeof(Factory.eVehicleType)))
+                {
+                    Console.WriteLine(type);
+                }*/
                 string filterState = Console.ReadLine();
                 List<string> vehicles = GarageLogic.ShowCurrentVehicles(filterState);
                 foreach(string liecensePlate in vehicles)
@@ -178,7 +183,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             try
             {
                 Console.WriteLine("Please Enter License Plate Number");
-                string lisencePlate=Console.ReadLine();
+                string licensePlate = Console.ReadLine();
                 Console.WriteLine("Please Choose new Vehicle State");
                 Console.WriteLine("1.In Repair \n2.Repaired \n3.Paid For");
                 string state = Console.ReadLine();
@@ -194,8 +199,8 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     case "3":
                         vehicleState = GarageLogic.eVehicleState.Paid_For;
                         break;
-                        GarageLogic.ChangeVehicleStatus(lisencePlate, vehicleState);
                 }
+                GarageLogic.ChangeVehicleStatus(licensePlate, vehicleState);
                 Console.WriteLine($"The Vehicle's state has been Uptated to {state}");
             }catch (KeyNotFoundException ex)
             {
@@ -250,16 +255,19 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 {
                     Console.WriteLine($"The wheels of the Vehicle were inflated");
                 }
-            }catch (ArgumentException ex)
+            }
+            catch (ArgumentException ex)
             {
                 //Print for incorrect Fuel type
-            }catch (KeyNotFoundException ex)
+            }
+            catch (KeyNotFoundException ex)
             {
                 //Print for non existent License plate
-            }/*catch (ValueOutOfRangeException ex)
+            }
+            catch (ValueOutOfRangeException ex)
             {
                 //Print for too much fuel
-            }*/
+            }
         }
 
         //6
@@ -270,14 +278,15 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             string lisencePlate = Console.ReadLine();
             Console.WriteLine("Please Enter Minutes to Charge");
             string minutes = Console.ReadLine();
-            bool chargeSuccess = GarageLogic.ChargeElectricVehicle(lisencePlate, float.Parse(minutes));
-            if (!chargeSuccess)
+            try
             {
-                Console.WriteLine("This Vehicle Don't Exsist");
+                GarageLogic.ChargeElectricVehicle(lisencePlate, float.Parse(minutes));
+                Console.WriteLine($"The car was succesfully charged");
             }
-            else
+            catch(KeyNotFoundException ex)
             {
-                Console.WriteLine($"The wheels of the Vehicle were inflated");
+                Console.WriteLine($"This Vehicle {lisencePlate} Doesn't Exsist");
+
             }
         }
 
@@ -297,25 +306,6 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
         }
 
-        /*private static void ShowVehicleDetails()
-        {
-            Console.WriteLine("Please Enter License Plate Number");
-            string lisencePlate = Console.ReadLine();
-            string details = GarageLogic.ShowVehicleDetails(lisencePlate);
-            if (details!= null)
-            {
-                Console.WriteLine(details);
-            }
-            else
-            {
-                Console.WriteLine("This Vehicle Don't Exsist");
-            }
-        }*/
 
-        /*        //TODO: FILL
-                private enum eUserAction
-                {
-
-                }*/
     }
  }

@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
                     m_CurrentPressure += i_AirToFill;
                     filled = true;
                 }
-                else throw new ArgumentOutOfRangeException("The current + the value is more then Maximum pressure");
+                else throw new ValueOutOfRangeException("The current + the value is more then Maximum pressure");
             }
             catch
             {

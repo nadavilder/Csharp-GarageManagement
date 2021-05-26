@@ -96,7 +96,6 @@ namespace Ex03.GarageLogic
             bool filled = false;
             foreach(Wheel wheel in m_Wheels)
             {
-                //Calculate fill amount
                 if (wheel.FillAir(wheel.AirMissing))
                 {
                     filled = true;

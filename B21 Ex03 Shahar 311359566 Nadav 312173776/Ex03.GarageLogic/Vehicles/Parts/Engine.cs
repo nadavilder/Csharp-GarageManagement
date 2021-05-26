@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
                 {
                     m_CurrentEnergyAmount += i_FillAmount;
                 }
-                else throw new ArgumentOutOfRangeException("The current + the value is more then Maximum tank amount");
+                else throw new ValueOutOfRangeException("The current + the value is more then Maximum tank amount");
             }
             catch
             {

@@ -24,6 +24,7 @@ namespace Ex03.GarageLogic
 
         public override Dictionary<string, string> GetParams()
         {
+            //Key for questions and value for possible values if there are any
             Dictionary<string, string> questions = base.GetParams();
             //questions.Add("Engine Type", "");
             questions.Add("Wheel manufacturer and current air pressure", $" up to {MAXWHEELAIRCAPACITY} seperated by a single space");
@@ -74,7 +75,10 @@ namespace Ex03.GarageLogic
                 {
                     case "License Type":
                         //m_LicenseType = ParseLicenseType(i_Answer);
-                        Enum.TryParse(i_Answer, out m_LicenseType);
+                        if(!Enum.TryParse(i_Answer, out m_LicenseType))
+                        {
+                            throw new ArgumentException("Invalid License type");
+                        }
                         break;
                     case "Motor Volume in cc":
                         m_EngineVolume = Int32.Parse(i_Answer);

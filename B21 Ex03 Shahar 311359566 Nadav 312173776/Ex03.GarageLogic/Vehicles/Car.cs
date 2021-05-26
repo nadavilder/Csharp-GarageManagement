@@ -74,13 +74,16 @@ namespace Ex03.GarageLogic
                 {
                     case "Car Color":
                         //m_Color = ParseCarColor(i_Answer);
-                        Enum.TryParse(i_Answer, out m_Color);
+                        if(!Enum.TryParse(i_Answer, out m_Color))
+                        {
+                            throw new ArgumentException("Invalid car color");
+                        }
                         break;
                     case "Number Of Doors":
                         int numOfDoors = Int32.Parse(i_Answer);
                         if(numOfDoors<2 || numOfDoors > 5)
                         {
-                            throw new ArgumentException("Too many doors for this car");
+                            throw new ArgumentException("Ivalid amount of doors for this car");
                         }
                         m_NumOfDoors = numOfDoors;
                         break;

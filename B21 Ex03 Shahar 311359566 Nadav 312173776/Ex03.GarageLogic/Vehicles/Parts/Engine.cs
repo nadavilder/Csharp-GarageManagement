@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Engine
     {
-        float m_CurrentEnergyAmount;
-        float m_MaxEnergyAmount;
+        private float m_CurrentEnergyAmount;
+        private float m_MaxEnergyAmount;
 
 
         public Engine(float i_CurrentEnergyAmount, float i_MaxEnergyAmount)
@@ -33,10 +33,18 @@ namespace Ex03.GarageLogic
             }
         }
 
+
         public override string ToString()
         {
             return ($"Current Energy Amount: {m_CurrentEnergyAmount} Max Energy Amount: {m_MaxEnergyAmount}");
         }
+
+
+        public float AmountOfEnergyLeft
+        {
+            get { return (m_CurrentEnergyAmount / m_MaxEnergyAmount) * 100; }
+        }
+
 
         public enum eEngineType
         {

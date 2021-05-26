@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         protected float m_AmountOfEnergyLeft;
         protected Engine m_Engine;
         protected Wheel[] m_Wheels;
-        
+
         public Vehicle()
         {
         }
@@ -30,11 +30,12 @@ namespace Ex03.GarageLogic
          public virtual Dictionary<string,string> GetParams()
         {
             Dictionary<string, string> questions =  new Dictionary<string, string>();
-           // questions.Add("License Plate Number", "");
             questions.Add("Model Name", "");
-            questions.Add("Amount of Energy Left", "");
-            questions.Add("Wheel Manufacturer", "");
-            questions.Add("Wheel's Current Air Pressure", "");
+            //questions.Add("Wheel manufacturer and current air pressure up to {} seperated by a single space", "");
+           // questions.Add("License Plate Number", "");
+            //questions.Add("Amount of Energy Left", "");
+            /*questions.Add("Wheel Manufacturer", "");
+            questions.Add("Wheel's Current Air Pressure", "");*/
             
             return questions;
         }
@@ -47,6 +48,46 @@ namespace Ex03.GarageLogic
             m_ModelName = i_Answers["Model Name"];
             m_AmountOfEnergyLeft = float.Parse(i_Answers["Amount of Energy Left"]);
            
+        }
+
+        public virtual void SetParam(string i_Question, string i_Answer)
+        {
+            try
+            {
+                switch (i_Question)
+                {
+                    /*case "License Plate Number":
+                        m_LicesnsePlateNum = i_Answer;
+                        break;*/
+                    case "Model Name":
+                        m_ModelName = i_Answer;
+                        break;
+                }
+            }catch(FormatException ex)
+            {
+                throw new FormatException($"{i_Answer} is not a valid input for {i_Question}");
+            }
+        }
+
+        protected Wheel[] ParseWheelData(string i_WheelData, float i_MaxAirPressue, int i_NumOfWheels)
+        {
+            Wheel[] wheels = new Wheel[i_NumOfWheels];
+            string[] splitData = i_WheelData.Split(" ");
+            if(splitData.Length != 2)
+            {
+                throw new FormatException("invalid wheel data");
+            }
+            float currentAirPressue = float.Parse(splitData[1]);
+            if(currentAirPressue > i_MaxAirPressue)
+            {
+                throw new ArgumentException("Too much air for wheels");
+            }
+            for (int i = 0; i < i_NumOfWheels; i++)
+            {
+                wheels[i] = new Wheel(splitData[0], currentAirPressue, i_MaxAirPressue);
+            }
+
+            return wheels;
         }
 
 
@@ -72,6 +113,11 @@ namespace Ex03.GarageLogic
         public Engine Engine
         {
             get { return m_Engine; }
+        }
+
+        public float AmountOfEnergyLeft
+        {
+            get { return m_Engine.AmountOfEnergyLeft; }
         }
 
         public string LicensePlate

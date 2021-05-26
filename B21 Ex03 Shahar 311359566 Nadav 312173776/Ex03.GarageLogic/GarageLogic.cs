@@ -108,7 +108,7 @@ namespace Ex03.GarageLogic
             }
             catch (KeyNotFoundException ex)
             {
-                throw (new KeyNotFoundException(i_LicensePlate));
+                throw new KeyNotFoundException($"The vehicle {i_LicensePlate} does not exists");
             }
         }
 

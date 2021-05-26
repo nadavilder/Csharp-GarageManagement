@@ -44,10 +44,62 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
         }
             //1
-            private static void AdmitNewVehicle()
+        
+        private static void AdmitNewVehicle()
+        {
+            Console.WriteLine("Please Enter License Plate Number");
+            string liecensePlate = Console.ReadLine();
+            bool exists = GarageLogic.m_Clients.ContainsKey(liecensePlate);
+            if (exists)
+            {
+                GarageLogic.ChangeVehicleStatus(liecensePlate, GarageLogic.eVehicleState.In_Repair);
+                Console.WriteLine("Your Vehicle is already in the garage and is in Repair");
+            }
+            if (!exists)
+            {
+                Console.WriteLine("Please Choose Vehicle Type from the following:");
+                foreach (string type in Enum.GetNames(typeof(Factory.eVehicleType)))
+                {
+                    Console.WriteLine(type);
+                }
+                string vehicleType = Console.ReadLine();
+                Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType);
+                newVehicle.LicensePlate = liecensePlate;
+                Dictionary<string, string> questions = newVehicle.GetParams();
+                List<string> questionsStrings = new List<string>(questions.Keys);
+                int i = 0;
+                while (i < questions.Count)
+                {
+                    try
+                    {
+                    string question = questionsStrings[i];
+                    Console.WriteLine($"Please Enter {question}{questions[question]}");
+                    string answer = Console.ReadLine();
+                    newVehicle.SetParam(question, answer);
+                        i++;
+                    }
+                    catch(FormatException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    catch(ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                Console.WriteLine("Please Enter Your Owner Name");
+                string ownerName = Console.ReadLine();
+                Console.WriteLine("Please Enter Phone Number");
+                string phoneNum = Console.ReadLine();
+                GarageLogic.AdmitNewVehicle(ownerName, phoneNum, newVehicle);
+            }
+        }
+        
+        /*private static void AdmitNewVehicle()
         {
             //Parse vehicle details and send to factory
             Console.WriteLine("Please Choose Vehicle Type:\n");
+            //TODO: Loop over vehicle types enum to print types
             Console.WriteLine("1.Fuel Motorcycle \n2.Electric Motorcycle \n3.Fuel Car \n4.Electric Car \n5.Truck:\n");
             string vehicleTypeChoise = Console.ReadLine();
             Factory.eVehicleType vehicleType=Factory.eVehicleType.Fuel_Car;
@@ -97,7 +149,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             GarageLogic.AdmitNewVehicle(ownerName, phoneNum, newVehicle);
           
        
-        }
+        }*/
 
         //2
         private static void ShowCurrentVehicles()
@@ -232,6 +284,21 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         //7
         private static void ShowVehicleDetails()
         {
+            try
+            {
+                Console.WriteLine("Please Enter License Plate Number");
+                string lisencePlate = Console.ReadLine();
+                string details = GarageLogic.ShowVehicleDetails(lisencePlate);
+                Console.WriteLine(details);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        /*private static void ShowVehicleDetails()
+        {
             Console.WriteLine("Please Enter License Plate Number");
             string lisencePlate = Console.ReadLine();
             string details = GarageLogic.ShowVehicleDetails(lisencePlate);
@@ -243,12 +310,12 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine("This Vehicle Don't Exsist");
             }
-        }
+        }*/
 
-        //TODO: FILL
-        private enum eUserAction
-        {
+        /*        //TODO: FILL
+                private enum eUserAction
+                {
 
-        }
-     }
+                }*/
+    }
  }

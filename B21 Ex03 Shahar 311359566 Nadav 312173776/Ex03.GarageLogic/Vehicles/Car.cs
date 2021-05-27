@@ -70,11 +70,7 @@ namespace Ex03.GarageLogic
                 switch (i_Question)
                 {
                     case "Car Color":
-                        //m_Color = ParseCarColor(i_Answer);
-                        if(!Enum.TryParse(i_Answer, out m_Color))
-                        {
-                            throw new ArgumentException("Invalid car color");
-                        }
+                        m_Color = ParseCarColor(i_Answer);
                         break;
                     case "Number Of Doors":
                         int numOfDoors = Int32.Parse(i_Answer);

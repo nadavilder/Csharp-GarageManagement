@@ -9,37 +9,29 @@ namespace Ex03.GarageLogic
         
         public static Vehicle CreateVehicleFromData(string i_VehicleType, string i_LicensePlate)
         {
-            eVehicleType vehicleType;
-            bool validType = Enum.TryParse(i_VehicleType, out vehicleType);
+            eVehicleType vehicleType = ParseVehicleType(i_VehicleType);
 
-            if (validType)
-            {
-                Vehicle newVehicle = null;
+            Vehicle newVehicle = null;
 
-                switch (vehicleType)
-                {
-                    case eVehicleType.Electric_Motorcycle:
-                        newVehicle = new Motorcycle(vehicleType, Engine.eEngineType.Electric, i_LicensePlate);
-                        break;
-                    case eVehicleType.Fuel_Motorcycle:
-                        newVehicle = new Motorcycle(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
-                        break;
-                    case eVehicleType.Electric_Car:
-                        newVehicle = new Car(vehicleType, Engine.eEngineType.Electric, i_LicensePlate);
-                        break;
-                    case eVehicleType.Fuel_Car:
-                        newVehicle = new Car(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
-                        break;
-                    case eVehicleType.Truck:
-                        newVehicle = new Truck(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
-                        break;
-                }
-                return newVehicle;
-            }
-            else
+            switch (vehicleType)
             {
-                throw new ArgumentException("Invalid Vehicle type");
+                case eVehicleType.Electric_Motorcycle:
+                    newVehicle = new Motorcycle(vehicleType, Engine.eEngineType.Electric, i_LicensePlate);
+                    break;
+                case eVehicleType.Fuel_Motorcycle:
+                    newVehicle = new Motorcycle(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
+                    break;
+                case eVehicleType.Electric_Car:
+                    newVehicle = new Car(vehicleType, Engine.eEngineType.Electric, i_LicensePlate);
+                    break;
+                case eVehicleType.Fuel_Car:
+                    newVehicle = new Car(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
+                    break;
+                case eVehicleType.Truck:
+                    newVehicle = new Truck(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
+                    break;
             }
+            return newVehicle;
         }
 
         public static eVehicleType ParseVehicleType(string i_VehicleType)
@@ -63,7 +55,7 @@ namespace Ex03.GarageLogic
                     type = eVehicleType.Truck;
                     break;
                 default:
-                    throw new FormatException(i_VehicleType);
+                    throw new FormatException("Invalid Vehicle Type");
             }
             return type;
         }

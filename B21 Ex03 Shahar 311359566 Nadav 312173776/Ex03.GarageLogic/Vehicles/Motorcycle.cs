@@ -71,11 +71,7 @@ namespace Ex03.GarageLogic
                 switch (i_Question)
                 {
                     case "License Type":
-                        //m_LicenseType = ParseLicenseType(i_Answer);
-                        if(!Enum.TryParse(i_Answer, out m_LicenseType))
-                        {
-                            throw new ArgumentException("Invalid License type");
-                        }
+                        m_LicenseType = ParseLicenseType(i_Answer);
                         break;
                     case "Motor Volume in cc":
                         m_EngineVolume = Int32.Parse(i_Answer);
@@ -134,7 +130,7 @@ namespace Ex03.GarageLogic
                     type = eLicenseType.BB;
                     break;
                 default:
-                    throw new FormatException();
+                    throw new FormatException("Invalid License Type");
             }
             return type;
         }

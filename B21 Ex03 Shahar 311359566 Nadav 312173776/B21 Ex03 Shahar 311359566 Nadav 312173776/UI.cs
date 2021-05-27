@@ -58,14 +58,24 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
             if (!exists)
             {
-                Console.WriteLine("Please Choose Vehicle Type from the following:");
-                foreach (string type in Enum.GetNames(typeof(Factory.eVehicleType)))
+                Vehicle newVehicle = null;
+                while(newVehicle == null)
                 {
-                    Console.WriteLine(type);
+                    Console.WriteLine("Please Choose Vehicle Type from the following:");
+                    foreach (string type in Enum.GetNames(typeof(Factory.eVehicleType)))
+                    {
+                        Console.WriteLine(type.Replace('_', ' '));
+                    }
+                    string vehicleType = Console.ReadLine();
+                    try
+                    {
+                        newVehicle = Factory.CreateVehicleFromData(vehicleType, liecensePlate);
+                    }
+                    catch (FormatException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
-                string vehicleType = Console.ReadLine();
-                //Add License Plate To constructor
-                Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType, liecensePlate);
                 Dictionary<string, string> questions = newVehicle.GetParams();
                 List<string> questionsStrings = new List<string>(questions.Keys);
                 int i = 0;

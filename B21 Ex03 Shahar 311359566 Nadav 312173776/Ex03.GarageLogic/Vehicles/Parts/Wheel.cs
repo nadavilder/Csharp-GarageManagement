@@ -35,7 +35,10 @@ namespace Ex03.GarageLogic
             if (m_CurrentPressure + i_AirToFill <= m_MaxPressure)
             {
                 m_CurrentPressure += i_AirToFill;
-                filled = true;
+                if (i_AirToFill > 0)
+                {
+                    filled = true;
+                }
             }
             else throw new ValueOutOfRangeException("The current + the value is more then Maximum pressure");
             return filled;
@@ -49,7 +52,7 @@ namespace Ex03.GarageLogic
 
         public float AirMissing
         {
-            get { return m_MaxPressure- m_CurrentPressure; }
+            get { return m_MaxPressure- m_CurrentPressure ; }
         }
 
 

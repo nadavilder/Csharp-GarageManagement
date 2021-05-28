@@ -21,7 +21,6 @@ namespace Ex03.GarageLogic
         public override Dictionary<string, string> GetParams()
         {
             Dictionary<string, string> questions = base.GetParams();
-            //questions.Add("Engine Type", "");
             questions.Add("Wheel manufacturer and current air pressure", $" up to {MAXWHEELAIRCAPACITY} seperated by a single space");
             questions.Add("Car Color", " From the following options: Red, Silver, White, Black");
             questions.Add("Number Of Doors", " from 2 up to 5");
@@ -39,28 +38,7 @@ namespace Ex03.GarageLogic
 
         }
 
-        public override void SetParams(Dictionary<string, string> i_Answers)
-        {
-            base.SetParams(i_Answers);
-            //m_Color = i_Answers["Car Color"];
-            m_NumOfDoors = Int32.Parse(i_Answers["Number Of Doors"]);
-            m_Wheels = new Wheel[4];
-            for (int i = 0; i < m_Wheels.Length; i++)
-            {
-                m_Wheels[i] = new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 32f);
-            }
-           
-            switch (m_EngineType)
-            {
-                case Engine.eEngineType.Electric:
-                    m_Engine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 3.2f);
-                    break;
-                case Engine.eEngineType.Fuel:
-                    m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan95, float.Parse(i_Answers["Current Fuel Liters"]), 45f);
-                    break;
-            }
 
-        }
 
         public override void SetParam(string i_Question, string i_Answer)
         {

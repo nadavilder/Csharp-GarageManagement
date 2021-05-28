@@ -9,7 +9,6 @@ namespace Ex03.GarageLogic
         protected Factory.eVehicleType m_VehicleType;
         protected string m_ModelName;
         protected readonly string  r_LicesnsePlateNum;
-        protected float m_AmountOfEnergyLeft;
         protected Engine m_Engine;
         protected Wheel[] m_Wheels;
         protected Engine.eEngineType m_EngineType;
@@ -19,7 +18,6 @@ namespace Ex03.GarageLogic
             m_VehicleType = i_VehicleType;
             m_EngineType = i_EngineType;
             r_LicesnsePlateNum = i_LicensePlate;
-
         }
         
         
@@ -29,34 +27,18 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string> questions =  new Dictionary<string, string>();
             questions.Add("Model Name", "");
-            //questions.Add("Wheel manufacturer and current air pressure up to {} seperated by a single space", "");
-           // questions.Add("License Plate Number", "");
-            //questions.Add("Amount of Energy Left", "");
-            /*questions.Add("Wheel Manufacturer", "");
-            questions.Add("Wheel's Current Air Pressure", "");*/
             
             return questions;
         }
 
 
         
-        public virtual void SetParams(Dictionary<string, string> i_Answers)
-        {
-            //m_LicesnsePlateNum = i_licensePlate;
-            m_ModelName = i_Answers["Model Name"];
-            m_AmountOfEnergyLeft = float.Parse(i_Answers["Amount of Energy Left"]);
-           
-        }
-
         public virtual void SetParam(string i_Question, string i_Answer)
         {
             try
             {
                 switch (i_Question)
                 {
-                    /*case "License Plate Number":
-                        m_LicesnsePlateNum = i_Answer;
-                        break;*/
                     case "Model Name":
                         m_ModelName = i_Answer;
                         break;
@@ -124,10 +106,6 @@ namespace Ex03.GarageLogic
             get { return r_LicesnsePlateNum; }
         }
 
-        public Factory.eVehicleType VehicleType
-        {
-            get { return m_VehicleType; }
-        }
 
         public Engine.eEngineType EngineType
         {

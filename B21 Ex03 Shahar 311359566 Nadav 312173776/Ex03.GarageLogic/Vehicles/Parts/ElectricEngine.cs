@@ -13,6 +13,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
+            //Remove base and word based on mintues
             return $"{base.ToString()}";
         }
     }

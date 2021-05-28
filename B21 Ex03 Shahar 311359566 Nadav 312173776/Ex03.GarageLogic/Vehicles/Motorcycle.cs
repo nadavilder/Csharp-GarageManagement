@@ -23,7 +23,6 @@ namespace Ex03.GarageLogic
         {
             //Key for questions and value for possible values if there are any
             Dictionary<string, string> questions = base.GetParams();
-            //questions.Add("Engine Type", "");
             questions.Add("Wheel manufacturer and current air pressure", $" up to {MAXWHEELAIRCAPACITY} seperated by a single space");
             questions.Add("License Type", " From the following options: A, AA, B1, BB");
             questions.Add("Motor Volume in cc", "");
@@ -40,28 +39,7 @@ namespace Ex03.GarageLogic
 
         }
 
-        public override void SetParams(Dictionary<string, string> i_Answers)
-        {
-            base.SetParams(i_Answers);
-            //m_LicenseType= i_Answers["License Type"];
-            m_EngineVolume = Int32.Parse(i_Answers["Motor Volume in cc"]);
-            m_Wheels = new Wheel[2];
-            for (int i = 0; i < m_Wheels.Length; i++)
-            {
-                m_Wheels[i]=new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 30f);
-            }
-           
-            switch (m_EngineType)
-            {
-                case Engine.eEngineType.Electric:
-                    m_Engine = new ElectricEngine(float.Parse(i_Answers["Current Battery Charge"]), 1.8f);
-                    break;
-                case Engine.eEngineType.Fuel:
-                    m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan98, float.Parse(i_Answers["Current Fuel Liters"]), 6f);
-                    break;
-            }
 
-        }
 
         public override void SetParam(string i_Question, string i_Answer)
         {
@@ -75,9 +53,6 @@ namespace Ex03.GarageLogic
                         break;
                     case "Motor Volume in cc":
                         m_EngineVolume = Int32.Parse(i_Answer);
-                        break;
-                    case "Amount of Energy Left":
-                        m_AmountOfEnergyLeft = float.Parse(i_Answer);
                         break;
                     case "Wheel manufacturer and current air pressure":
                         m_Wheels = ParseWheelData(i_Answer, MAXWHEELAIRCAPACITY, NUMOFWHEELS);

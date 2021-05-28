@@ -40,6 +40,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
+            //Remove base and word to fuel
             return $"{base.ToString()} , Fuel Type: { m_FuelType}";
         }
 

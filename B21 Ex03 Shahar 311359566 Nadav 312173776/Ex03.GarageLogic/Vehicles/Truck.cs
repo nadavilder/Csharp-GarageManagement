@@ -13,7 +13,6 @@ namespace Ex03.GarageLogic
         private const float MAXWHEELAIRCAPACITY = 28F;
         private const int NUMOFWHEELS = 16;
         public Truck(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
-
         {
         }
 
@@ -29,18 +28,6 @@ namespace Ex03.GarageLogic
             return questions;
         }
 
-        public override void SetParams(Dictionary<string, string> i_Answers)
-        {
-            base.SetParams(i_Answers);
-            m_HazardsMat = bool.Parse(i_Answers["Carring Hazardous Materials? Enter true of false"]);
-            m_MaxWeight = float.Parse(i_Answers["Max Weight"]);
-            m_Wheels = new Wheel[16];
-            for (int i = 0; i < m_Wheels.Length; i++)
-            {
-                m_Wheels[i] = new Wheel(i_Answers["Wheel Manufacturer"], float.Parse(i_Answers["Wheel's Current Air Pressure"]), 26f);
-            }
-            m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Soler, float.Parse(i_Answers["Current Fuel Liters"]), 120f);
-        }
 
         public override void SetParam(string i_Question, string i_Answer)
         {

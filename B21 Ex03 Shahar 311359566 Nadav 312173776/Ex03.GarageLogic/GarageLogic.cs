@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
 {
     public class GarageLogic
     {
-        public static readonly Dictionary<string, Client> m_Clients = new Dictionary<string, Client>();
+        private static readonly Dictionary<string, Client> m_Clients = new Dictionary<string, Client>();
 
 
 
@@ -141,6 +141,11 @@ namespace Ex03.GarageLogic
             {
                 throw new KeyNotFoundException($"The vehicle {i_LicensePlate} does not exists");
             }
+        }
+
+        public static bool CheckVehicleExists(string i_LicensePlate)
+        {
+            return m_Clients.ContainsKey(i_LicensePlate);
         }
 
         private static eVehicleState ParseVehicleState(string i_VehicleState)

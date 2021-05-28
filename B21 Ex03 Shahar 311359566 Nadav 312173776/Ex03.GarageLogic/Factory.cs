@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
             return newVehicle;
         }
 
-        public static eVehicleType ParseVehicleType(string i_VehicleType)
+        private static eVehicleType ParseVehicleType(string i_VehicleType)
         {
             eVehicleType type;
             switch (i_VehicleType)

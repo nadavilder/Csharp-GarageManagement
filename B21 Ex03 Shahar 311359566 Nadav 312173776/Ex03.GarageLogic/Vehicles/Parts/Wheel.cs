@@ -18,16 +18,7 @@ namespace Ex03.GarageLogic
 
         }
 
-/*        public bool FillAir()
-        {
-            bool filled = false;
-            if (m_CurrentPressure < m_MaxPressure)
-            {
-                m_CurrentPressure = m_MaxPressure;
-                filled = true;
-            }
-            return filled;
-        }*/
+
 
         public bool FillAir(float i_AirToFill)
         {

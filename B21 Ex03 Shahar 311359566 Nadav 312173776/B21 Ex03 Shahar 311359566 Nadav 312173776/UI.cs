@@ -6,14 +6,13 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
 {
     class UI
     {
-        public static void PreformUserAction()
+        public static bool PreformUserAction()
         {
-            //Parse user action and call relevant methods
             Console.WriteLine();
             Console.WriteLine("Hi! What Can I Do For You?\n");
             Console.WriteLine("Please Choose: \n1. Admit Vehicle  \n2. Show Current Vehicles   \n3. Change Vehicle Status" +
                 "\n4. Fill Air  \n5. Fill Fuel \n6. Charge Vehicle  \n7. Show Vehicle Details  \n8. Exit");
-
+            bool continueProgram = true;
             string option = Console.ReadLine();
             switch (option)
             {
@@ -39,18 +38,22 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     ShowVehicleDetails();
                     break;
                 case "8":
-                    Program.active = false;
+                    continueProgram = false;
                     break;
-
+                default:
+                    Console.WriteLine("Invalid Input");
+                    break;
             }
+            return continueProgram;
         }
-            //1
         
+        
+        //1
         private static void AdmitNewVehicle()
         {
             Console.WriteLine("Please Enter License Plate Number");
             string liecensePlate = Console.ReadLine();
-            bool exists = GarageLogic.m_Clients.ContainsKey(liecensePlate);
+            bool exists = GarageLogic.CheckVehicleExists(liecensePlate);
             if (exists)
             {
                 GarageLogic.ChangeVehicleStatus(liecensePlate, GarageLogic.eVehicleState.In_Repair);
@@ -106,61 +109,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
         }
         
-        /*private static void AdmitNewVehicle()
-        {
-            //Parse vehicle details and send to factory
-            Console.WriteLine("Please Choose Vehicle Type:\n");
-            //TODO: Loop over vehicle types enum to print types
-            Console.WriteLine("1.Fuel Motorcycle \n2.Electric Motorcycle \n3.Fuel Car \n4.Electric Car \n5.Truck:\n");
-            string vehicleTypeChoise = Console.ReadLine();
-            Factory.eVehicleType vehicleType=Factory.eVehicleType.Fuel_Car;
-            switch (vehicleTypeChoise)
-            {
-                case "1":
-                    vehicleType=Factory.eVehicleType.Fuel_Motorcycle;
-                    break;
-                case "2":
-                    vehicleType = Factory.eVehicleType.Electric_Motorcycle; 
-                    break;
-                case "3":
-                    vehicleType = Factory.eVehicleType.Fuel_Car;
-                    break;
-                case "4":
-                    vehicleType = Factory.eVehicleType.Electric_Car;
-                    break;
-                case "5":
-                    vehicleType = Factory.eVehicleType.Truck;
-                    break;
-            }
-            Console.WriteLine("Please Enter License Plate Number");
-            string liecensePlate = Console.ReadLine();
-            if (GarageLogic.m_Clients.ContainsKey(liecensePlate))
-            {
-                GarageLogic.ChangeVehicleStatus(liecensePlate, GarageLogic.eVehicleState.In_Repair);
-                Console.WriteLine("Your Vehicle is in Repair");
-            }
-            Vehicle newVehicle = Factory.CreateVehicleFromData(vehicleType);
-            newVehicle.LicensePlate = liecensePlate;
-            Dictionary<string, string> questions = newVehicle.GetParams();
-            List<string> questionsStrings = new List<string>(questions.Keys);
 
-            foreach (string question in questionsStrings)
-            {
-                Console.WriteLine($"Please Enter {question}");
-                string answer = Console.ReadLine();
-                questions[question] = answer;
-            }
-
-            
-            newVehicle.SetParams(questions);
-            Console.WriteLine("Please Enter Your Owner Name");
-            string ownerName = Console.ReadLine(); 
-            Console.WriteLine("Please Enter Phone Number");
-            string phoneNum = Console.ReadLine();
-            GarageLogic.AdmitNewVehicle(ownerName, phoneNum, newVehicle);
-          
-       
-        }*/
 
         //2
         private static void ShowCurrentVehicles()
@@ -224,7 +173,6 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             try
             {
-                //Get license plate number and fill amount and send to logic
                 Console.WriteLine("Please Enter License Plate Number");
                 string licensePlate = Console.ReadLine();
                 bool fillSuccess=GarageLogic.FillAir(licensePlate);
@@ -251,7 +199,6 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         //5
         private static void FillFuelVehicle()
         {
-            // Get license plate number, fuel type and amount and send to logic
 
             Console.WriteLine("Please Enter License Plate Number");
             string licensePlate = Console.ReadLine();

@@ -29,10 +29,10 @@ namespace Ex03.GarageLogic
             switch (m_EngineType)
             {
                 case Engine.eEngineType.Electric:
-                    questions.Add("Current Battery Charge", $" up to {k_MaxBatteryCharge}");
+                    questions.Add("Current Battery Charge", $" up to {k_MaxBatteryCharge} hours");
                     break;
                 case Engine.eEngineType.Fuel:
-                    questions.Add("Current Fuel Liters", $" up to {k_MaxFuelCapacity}");
+                    questions.Add("Current Fuel Liters", $" up to {k_MaxFuelCapacity} liters");
                     break;      
             }
             return questions;

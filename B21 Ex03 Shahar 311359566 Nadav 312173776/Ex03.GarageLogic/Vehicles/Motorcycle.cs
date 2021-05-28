@@ -4,28 +4,26 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Motorcycle : Vehicle
+   public class Motorcycle : Vehicle
     {
-        private eLicenseType m_LicenseType;
-        private int m_EngineVolume;
         private const float k_MaxBatteryCharge = 1.8F;
         private const float k_MaxFuelCapacity = 6F;
         private const float k_MaxWheelAirCapacity = 30F;
         private const int k_NumOfWheels = 2;
+        private eLicenseType m_LicenseType;
+        private int m_EngineVolume;
 
-
-        public Motorcycle(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate): base(i_VehicleType, i_EngineType, i_LicensePlate)
+        public Motorcycle(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
         {
         }
         
-
         public override Dictionary<string, string> GetParams()
         {
-            //Key for questions and value for possible values if there are any
+            // Key for questions and value for possible values if there are any
             Dictionary<string, string> questions = base.GetParams();
             questions.Add("Wheel manufacturer and current air pressure", $" up to {k_MaxWheelAirCapacity} seperated by a single space");
             questions.Add("License Type", " From the following options: A, AA, B1, BB");
-            questions.Add("Motor Volume in cc", "");
+            questions.Add("Motor Volume in cc", string.Empty);
             switch (m_EngineType)
             {
                 case Engine.eEngineType.Electric:
@@ -35,11 +33,9 @@ namespace Ex03.GarageLogic
                     questions.Add("Current Fuel Liters", $" up to {k_MaxFuelCapacity} liters");
                     break;      
             }
+
             return questions;
-
         }
-
-
 
         public override void SetParam(string i_Question, string i_Answer)
         {
@@ -57,6 +53,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Motor volume cannot be negative");
                         }
+
                         m_EngineVolume = engineVolume;
                         break;
                     case "Wheel manufacturer and current air pressure":
@@ -68,6 +65,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Invalid number for battery charge");
                         }
+
                         m_Engine = new ElectricEngine(currentBatteryCahrge, k_MaxBatteryCharge);
                         break;
                     case "Current Fuel Liters":
@@ -76,6 +74,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Invalid number for fuel ammount");
                         }
+
                         m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan98, currentFuel, k_MaxFuelCapacity);
                         break;
                 }
@@ -85,7 +84,6 @@ namespace Ex03.GarageLogic
                 throw new FormatException($"{i_Answer} is not a valid input for {i_Question}");
             }
         }
-
 
         public override string ToString()
         {
@@ -112,8 +110,10 @@ namespace Ex03.GarageLogic
                 default:
                     throw new FormatException("Invalid License Type");
             }
+
             return type;
         }
+
         private enum eLicenseType
         {
             A,

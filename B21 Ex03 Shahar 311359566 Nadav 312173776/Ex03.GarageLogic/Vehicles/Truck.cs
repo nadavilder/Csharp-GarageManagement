@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Truck : Vehicle
-
+    public class Truck : Vehicle
     {
-        private bool m_HazardsMat;
-        private float m_MaxWeight;
         private const float k_MaxFuelCapacity = 120F;
         private const float k_MaxWheelAirCapacity = 28F;
         private const int k_NumOfWheels = 16;
+        private bool m_HazardsMat;
+        private float m_MaxWeight;
+
         public Truck(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
         {
         }
@@ -19,10 +19,9 @@ namespace Ex03.GarageLogic
         public override Dictionary<string, string> GetParams()
         {
             Dictionary<string, string> questions = base.GetParams();
-            //questions.Add("Engine Type", "");
             questions.Add("Wheel manufacturer and current air pressure", $" up to {k_MaxWheelAirCapacity} seperated by a single space");
             questions.Add("Carring Hazardous Materials?", "Enter true of false");
-            questions.Add("Max Weight", "");
+            questions.Add("Max Weight", string.Empty);
             questions.Add("Current Fuel Liters", $" Up to {k_MaxFuelCapacity} liters");
 
             return questions;
@@ -44,6 +43,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Weight cannot be negative");
                         }
+
                         m_MaxWeight = maxWeight;
                         break;
                     case "Wheel manufacturer and current air pressure":
@@ -55,6 +55,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Invalid number for fuel ammount");
                         }
+
                         m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Soler, currentFuel, k_MaxFuelCapacity);
                         break;
                 }
@@ -71,4 +72,3 @@ namespace Ex03.GarageLogic
         }
     }
 }
-

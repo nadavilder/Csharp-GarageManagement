@@ -6,7 +6,6 @@ namespace Ex03.GarageLogic
 {
     public class Factory
     {
-        
         public static Vehicle CreateVehicleFromData(string i_VehicleType, string i_LicensePlate)
         {
             eVehicleType vehicleType = parseVehicleType(i_VehicleType);
@@ -31,6 +30,7 @@ namespace Ex03.GarageLogic
                     newVehicle = new Truck(vehicleType, Engine.eEngineType.Fuel, i_LicensePlate);
                     break;
             }
+
             return newVehicle;
         }
 
@@ -57,16 +57,17 @@ namespace Ex03.GarageLogic
                 default:
                     throw new FormatException("Invalid Vehicle Type");
             }
+
             return type;
         }
+
         public enum eVehicleType
         {
             Electric_Motorcycle,
             Fuel_Motorcycle,
             Electric_Car,
             Fuel_Car,
-            Truck,
-
+            Truck
         }
     }
 }

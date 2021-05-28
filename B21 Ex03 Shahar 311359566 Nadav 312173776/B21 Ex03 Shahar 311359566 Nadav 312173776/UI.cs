@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Ex03.GarageLogic;
+
 namespace B21_Ex03_Shahar_311359566_Nadav_312173776
 {
-    class UI
+    public class UI
     {
         public static bool PreformUserAction()
         {
@@ -44,11 +45,11 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     Console.WriteLine("Invalid Input");
                     break;
             }
+
             return continueProgram;
         }
         
-        
-        //1
+        // 1
         private static void admitNewVehicle()
         {
             string liecensePlate = null;
@@ -66,12 +67,14 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     Console.WriteLine("Invalid license plate number");
                 }
             }
+
             bool exists = GarageLogic.CheckVehicleExists(liecensePlate);
             if (exists)
             {
                 GarageLogic.ChangeVehicleStatus(liecensePlate, GarageLogic.eVehicleState.In_Repair);
                 Console.WriteLine("Your Vehicle is already in the garage and is in Repair");
             }
+
             if (!exists)
             {
                 Vehicle newVehicle = null;
@@ -82,6 +85,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     {
                         Console.WriteLine(type.Replace('_', ' '));
                     }
+
                     string vehicleType = Console.ReadLine();
                     try
                     {
@@ -92,6 +96,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                         Console.WriteLine(ex.Message);
                     }
                 }
+
                 Dictionary<string, string> questions = newVehicle.GetParams();
                 List<string> questionsStrings = new List<string>(questions.Keys);
                 int i = 0;
@@ -114,6 +119,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                         Console.WriteLine(ex.Message);
                     }
                 }
+
                 Console.WriteLine("Please Enter Your Owner Name");
                 string ownerName = Console.ReadLine();
                 string phoneNum = null;
@@ -131,13 +137,12 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                         Console.WriteLine("Invalid phone number");
                     }
                 }
+
                 GarageLogic.AdmitNewVehicle(ownerName, phoneNum, newVehicle);
             }
         }
         
-
-
-        //2
+        // 2
         private static void showCurrentVehicles()
         {
             try
@@ -147,6 +152,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 {
                     Console.WriteLine(type.Replace('_', ' '));
                 }
+
                 Console.WriteLine();
                 string filterState = Console.ReadLine();
                 List<string> vehicles = GarageLogic.ShowCurrentVehicles(filterState);
@@ -162,7 +168,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
         }
 
-        //3
+        // 3
         private static void changeVehicleStatus()
         {
             try
@@ -170,8 +176,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 Console.WriteLine("Please Enter License Plate Number");
                 string licensePlate = Console.ReadLine();
                 bool valid = false;
-                GarageLogic.eVehicleState vehicleState= GarageLogic.eVehicleState.In_Repair;
-
+                GarageLogic.eVehicleState vehicleState = GarageLogic.eVehicleState.In_Repair;
                 while (!valid)
                 {
                     Console.WriteLine("Please Choose new Vehicle State (Enter number 1-3)");
@@ -196,22 +201,24 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                             break;
                     }
                 }
+
                 GarageLogic.ChangeVehicleStatus(licensePlate, vehicleState);
                 Console.WriteLine($"The Vehicle's state has been Uptated to {vehicleState}");
-            }catch (KeyNotFoundException ex)
+            }
+            catch (KeyNotFoundException ex)
             {
                 Console.WriteLine($"The Vehicle {ex.Message} Does not Exist");
             }
         }
 
-        //4
+        // 4
         private static void fillAir()
         {
             try
             {
                 Console.WriteLine("Please Enter License Plate Number");
                 string licensePlate = Console.ReadLine();
-                bool fillSuccess=GarageLogic.FillAir(licensePlate);
+                bool fillSuccess = GarageLogic.FillAir(licensePlate);
                 if (fillSuccess)
                 {
                     Console.WriteLine("The wheels of the Vehicle were inflated");
@@ -219,7 +226,6 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 else
                 {
                     Console.WriteLine("The wheels of the Vehicle were already full");
-
                 }
             }
             catch (ValueOutOfRangeException ex)
@@ -236,10 +242,9 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
         }
 
-        //5
+        // 5
         private static void fillFuelVehicle()
         {
-
             Console.WriteLine("Please Enter License Plate Number");
             string licensePlate = Console.ReadLine();
             Console.WriteLine("Please Enter fuel type from the following:");
@@ -247,12 +252,13 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine(type);
             }
+
             string fuelType = Console.ReadLine();
             Console.WriteLine("Please Enter amout to fill");
             string fuelAmount = Console.ReadLine();
             try
             {
-                if(GarageLogic.FillFuelVehicle(licensePlate,FuelEngine.ParseFuelTypes(fuelType),float.Parse(fuelAmount)))
+                if(GarageLogic.FillFuelVehicle(licensePlate, FuelEngine.ParseFuelTypes(fuelType), float.Parse(fuelAmount)))
                 {
                     Console.WriteLine($"The Vehicle was fueled with {fuelAmount} liters");
                 }
@@ -279,10 +285,9 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             }
         }
 
-        //6
+        // 6
         private static void chargeElectricVehicle()
         {
-
             Console.WriteLine("Please Enter License Plate Number");
             string licensePlate = Console.ReadLine();
             Console.WriteLine("Please Enter Minutes to Charge");
@@ -314,10 +319,9 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine(ex.Message);
             }
-            
         }
 
-        //7
+        // 7
         private static void showVehicleDetails()
         {
             try
@@ -342,6 +346,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 validNumber = false;
             }
+
             foreach(char digit in i_Number)
             {
                 if (!char.IsDigit(digit))
@@ -349,9 +354,8 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                     validNumber = false;
                 }
             }
+
             return validNumber;
         }
-
-
     }
  }

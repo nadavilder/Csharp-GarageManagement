@@ -4,16 +4,14 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class FuelEngine: Engine
+    public class FuelEngine : Engine
     {
         private eFuelTypes m_FuelType;
     
-
         public FuelEngine(eFuelTypes i_FuelType, float i_CurrentEnergyAmount, float i_MaxEnergyAmount) : base(i_CurrentEnergyAmount, i_MaxEnergyAmount)
         {
             m_FuelType = i_FuelType;
         }
-
 
         public static eFuelTypes ParseFuelTypes(string i_FuelType)
         {
@@ -35,6 +33,7 @@ namespace Ex03.GarageLogic
                 default:
                     throw new FormatException($"{i_FuelType} is not a valid fuel type");
             }
+
             return type;
         }
 
@@ -55,7 +54,5 @@ namespace Ex03.GarageLogic
             Octan96,
             Octan98
         }
-
-
     }
 }

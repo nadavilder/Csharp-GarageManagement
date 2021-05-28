@@ -6,10 +6,10 @@ namespace Ex03.GarageLogic
 {
     public class Engine
     {
+        private const int k_MinFuel = 0;
         private float m_CurrentEnergyAmount;
         private float m_MaxEnergyAmount;
-        private const int k_MinFuel = 0;
-
+        
         public Engine(float i_CurrentEnergyAmount, float i_MaxEnergyAmount)
         {
             m_CurrentEnergyAmount = i_CurrentEnergyAmount;
@@ -23,6 +23,7 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("Fill amount cannot be negative");
             }
+
             if (m_CurrentEnergyAmount + i_FillAmount <= m_MaxEnergyAmount)
             {
                 m_CurrentEnergyAmount += i_FillAmount;
@@ -31,15 +32,19 @@ namespace Ex03.GarageLogic
                     filled = true;
                 }
             }
-            else throw new ValueOutOfRangeException(k_MinFuel,m_MaxEnergyAmount-m_CurrentEnergyAmount);
+            else
+            {
+                throw new ValueOutOfRangeException(k_MinFuel, m_MaxEnergyAmount - m_CurrentEnergyAmount);
+            }
+
             return filled;
         }
-
 
         public float CurrentEnergyAmount
         {
             get { return m_CurrentEnergyAmount; }
         }
+
         public float MaxEnergyAmount
         {
             get { return m_MaxEnergyAmount; }
@@ -49,7 +54,6 @@ namespace Ex03.GarageLogic
         {
             get { return (m_CurrentEnergyAmount / m_MaxEnergyAmount) * 100; }
         }
-
 
         public enum eEngineType
         {

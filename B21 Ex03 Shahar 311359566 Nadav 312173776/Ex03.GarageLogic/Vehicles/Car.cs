@@ -4,15 +4,16 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Car:Vehicle
+    public class Car : Vehicle
     {
-        private eCarColor m_Color;
-        private int m_NumOfDoors;
         private const float k_MaxBatteryCharge = 3.2F;
         private const float k_MaxFuelCapacity = 45F;
         private const float k_MaxWheelAirCapacity = 32F;
         private const int k_NumOfWheels = 4;
-
+        private const int k_MinNumOfDoors = 2;
+        private const int k_MaxNumOfDoors = 5;
+        private eCarColor m_Color;
+        private int m_NumOfDoors;
 
         public Car(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
         {
@@ -33,12 +34,9 @@ namespace Ex03.GarageLogic
                     questions.Add("Current Fuel Liters", $" up to {k_MaxFuelCapacity} liters");
                     break;
             }
+
             return questions;
-
-
         }
-
-
 
         public override void SetParam(string i_Question, string i_Answer)
         {
@@ -51,11 +49,12 @@ namespace Ex03.GarageLogic
                         m_Color = parseCarColor(i_Answer);
                         break;
                     case "Number Of Doors":
-                        int numOfDoors = Int32.Parse(i_Answer);
-                        if(numOfDoors<2 || numOfDoors > 5)
+                        int numOfDoors = int.Parse(i_Answer);
+                        if(numOfDoors < k_MinNumOfDoors || numOfDoors > k_MaxNumOfDoors)
                         {
                             throw new ArgumentException("Ivalid amount of doors for this car");
                         }
+
                         m_NumOfDoors = numOfDoors;
                         break;
                     case "Wheel manufacturer and current air pressure":
@@ -67,6 +66,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Invalid number for battery charge");
                         }
+
                         m_Engine = new ElectricEngine(currentBatteryCahrge, k_MaxBatteryCharge);
                         break;
                     case "Current Fuel Liters":
@@ -75,6 +75,7 @@ namespace Ex03.GarageLogic
                         {
                             throw new ArgumentException("Invalid number for fuel ammount");
                         }
+
                         m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan95, currentFuel, k_MaxFuelCapacity);
                         break;
                 }
@@ -105,6 +106,7 @@ namespace Ex03.GarageLogic
                 default:
                     throw new FormatException();
             }
+
             return color;
         }
         

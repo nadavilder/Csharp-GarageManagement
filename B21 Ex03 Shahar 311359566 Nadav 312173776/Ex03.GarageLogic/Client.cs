@@ -17,7 +17,6 @@ namespace Ex03.GarageLogic
             m_OwnerPhoneNumber = i_OwnerPhoneNumber;
             m_VehicleState = GarageLogic.eVehicleState.In_Repair;
             m_Vehicle = i_Vehicle;
-            
         }
 
         public Vehicle Vehicle
@@ -43,7 +42,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return ($"Owner Name: {m_OwnerName} , Phone Number: {m_OwnerPhoneNumber} , Vehicle State: {m_VehicleState} " + m_Vehicle.ToString());
+            return $"Owner Name: {m_OwnerName} , Phone Number: {m_OwnerPhoneNumber} , Vehicle State: {m_VehicleState} " + m_Vehicle.ToString();
         }
     }
 }

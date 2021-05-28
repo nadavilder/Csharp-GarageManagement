@@ -39,7 +39,12 @@ namespace Ex03.GarageLogic
                         m_HazardsMat = bool.Parse(i_Answer);
                         break;
                     case "Max Weight":
-                        m_MaxWeight = float.Parse(i_Answer);
+                        float maxWeight = float.Parse(i_Answer);
+                        if (maxWeight < 0)
+                        {
+                            throw new ArgumentException("Weight cannot be negative");
+                        }
+                        m_MaxWeight = maxWeight;
                         break;
                     case "Wheel manufacturer and current air pressure":
                         m_Wheels = ParseWheelData(i_Answer, k_MaxWheelAirCapacity, k_NumOfWheels);

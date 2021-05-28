@@ -52,7 +52,12 @@ namespace Ex03.GarageLogic
                         m_LicenseType = parseLicenseType(i_Answer);
                         break;
                     case "Motor Volume in cc":
-                        m_EngineVolume = Int32.Parse(i_Answer);
+                        int engineVolume = int.Parse(i_Answer);
+                        if(engineVolume < 0)
+                        {
+                            throw new ArgumentException("Motor volume cannot be negative");
+                        }
+                        m_EngineVolume = engineVolume;
                         break;
                     case "Wheel manufacturer and current air pressure":
                         m_Wheels = ParseWheelData(i_Answer, k_MaxWheelAirCapacity, k_NumOfWheels);

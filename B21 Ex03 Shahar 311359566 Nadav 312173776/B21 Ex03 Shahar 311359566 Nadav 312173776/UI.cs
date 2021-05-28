@@ -116,11 +116,10 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             try
             {
-                //TODO add available statuses
                 Console.WriteLine($"If you like to Filter by Vehicle State from the following statuses..., Enter State, else Press Enter ");
                 foreach (string type in Enum.GetNames(typeof(GarageLogic.eVehicleState)))
                 {
-                    Console.WriteLine(type);
+                    Console.WriteLine(type.Replace('_', ' '));
                 }
                 Console.WriteLine();
                 string filterState = Console.ReadLine();

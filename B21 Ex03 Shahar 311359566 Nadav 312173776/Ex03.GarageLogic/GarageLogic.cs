@@ -153,13 +153,13 @@ namespace Ex03.GarageLogic
             eVehicleState state;
             switch (i_VehicleState)
             {
-                case "In_Repair":
+                case "In Repair":
                     state = eVehicleState.In_Repair;
                     break;
                 case "Repaired":
                     state = eVehicleState.Repaired;
                     break;
-                case "Paid_For":
+                case "Paid For":
                     state = eVehicleState.Paid_For;
                     break;
                 default:

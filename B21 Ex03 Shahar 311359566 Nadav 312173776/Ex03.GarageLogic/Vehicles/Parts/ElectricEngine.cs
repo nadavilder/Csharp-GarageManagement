@@ -13,8 +13,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            //Remove base and word based on mintues
-            return $"{base.ToString()}";
+            return $"The time left for driving is {CurrentEnergyAmount} hours out of {MaxEnergyAmount} hours";
         }
     }
 }

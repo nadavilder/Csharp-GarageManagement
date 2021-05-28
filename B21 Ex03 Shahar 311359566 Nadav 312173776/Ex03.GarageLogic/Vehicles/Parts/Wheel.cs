@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
         private string m_Manufacturer;
         private float m_CurrentPressure;
         private float m_MaxPressure;
-
+        private const int k_MinAir = 0;
         public Wheel(string i_Manufacturer,float i_CurrentPressure, float i_MaxPressure)
         {
             m_Manufacturer = i_Manufacturer;
@@ -26,12 +26,12 @@ namespace Ex03.GarageLogic
             if (m_CurrentPressure + i_AirToFill <= m_MaxPressure)
             {
                 m_CurrentPressure += i_AirToFill;
-                if (i_AirToFill > 0)
+                if (i_AirToFill > k_MinAir)
                 {
                     filled = true;
                 }
             }
-            else throw new ValueOutOfRangeException("The current + the value is more then Maximum pressure");
+            else throw new ValueOutOfRangeException(k_MinAir,m_MaxPressure-m_CurrentPressure);
             return filled;
 
         }

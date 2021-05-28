@@ -9,9 +9,9 @@ namespace Ex03.GarageLogic
     {
         private bool m_HazardsMat;
         private float m_MaxWeight;
-        private const float MAXFUELCAPACITY = 120F;
-        private const float MAXWHEELAIRCAPACITY = 28F;
-        private const int NUMOFWHEELS = 16;
+        private const float k_MaxFuelCapacity = 120F;
+        private const float k_MaxWheelAirCapacity = 28F;
+        private const int k_NumOfWheels = 16;
         public Truck(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
         {
         }
@@ -20,14 +20,13 @@ namespace Ex03.GarageLogic
         {
             Dictionary<string, string> questions = base.GetParams();
             //questions.Add("Engine Type", "");
-            questions.Add("Wheel manufacturer and current air pressure", $" up to {MAXWHEELAIRCAPACITY} seperated by a single space");
+            questions.Add("Wheel manufacturer and current air pressure", $" up to {k_MaxWheelAirCapacity} seperated by a single space");
             questions.Add("Carring Hazardous Materials?", "Enter true of false");
             questions.Add("Max Weight", "");
-            questions.Add("Current Fuel Liters", $"Up to {MAXFUELCAPACITY}");
+            questions.Add("Current Fuel Liters ", $"Up to {k_MaxFuelCapacity}");
 
             return questions;
         }
-
 
         public override void SetParam(string i_Question, string i_Answer)
         {
@@ -43,15 +42,15 @@ namespace Ex03.GarageLogic
                         m_MaxWeight = float.Parse(i_Answer);
                         break;
                     case "Wheel manufacturer and current air pressure":
-                        m_Wheels = ParseWheelData(i_Answer, MAXWHEELAIRCAPACITY, NUMOFWHEELS);
+                        m_Wheels = ParseWheelData(i_Answer, k_MaxWheelAirCapacity, k_NumOfWheels);
                         break;
                     case "Current Fuel Liters":
                         float currentFuel = float.Parse(i_Answer);
-                        if (currentFuel < 0 || currentFuel > MAXFUELCAPACITY)
+                        if (currentFuel < 0 || currentFuel > k_MaxFuelCapacity)
                         {
                             throw new ArgumentException("Invalid number for fuel ammount");
                         }
-                        m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Soler, currentFuel, MAXFUELCAPACITY);
+                        m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Soler, currentFuel, k_MaxFuelCapacity);
                         break;
                 }
             }

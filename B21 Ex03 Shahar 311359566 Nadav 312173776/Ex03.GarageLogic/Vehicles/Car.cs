@@ -8,10 +8,10 @@ namespace Ex03.GarageLogic
     {
         private eCarColor m_Color;
         private int m_NumOfDoors;
-        private const float MAXBATTERYCHARGE = 3.2F;
-        private const float MAXFUELCAPACITY = 45F;
-        private const float MAXWHEELAIRCAPACITY = 32F;
-        private const int NUMOFWHEELS = 4;
+        private const float k_MaxBatteryCharge = 3.2F;
+        private const float k_MaxFuelCapacity = 45F;
+        private const float k_MaxWheelAirCapacity = 32F;
+        private const int k_NumOfWheels = 4;
 
 
         public Car(Factory.eVehicleType i_VehicleType, Engine.eEngineType i_EngineType, string i_LicensePlate) : base(i_VehicleType, i_EngineType, i_LicensePlate)
@@ -21,16 +21,16 @@ namespace Ex03.GarageLogic
         public override Dictionary<string, string> GetParams()
         {
             Dictionary<string, string> questions = base.GetParams();
-            questions.Add("Wheel manufacturer and current air pressure", $" up to {MAXWHEELAIRCAPACITY} seperated by a single space");
+            questions.Add("Wheel manufacturer and current air pressure", $" up to {k_MaxWheelAirCapacity} seperated by a single space");
             questions.Add("Car Color", " From the following options: Red, Silver, White, Black");
             questions.Add("Number Of Doors", " from 2 up to 5");
             switch (m_EngineType)
             {
                 case Engine.eEngineType.Electric:
-                    questions.Add("Current Battery Charge", $" up to {MAXBATTERYCHARGE}");
+                    questions.Add("Current Battery Charge", $" up to {k_MaxBatteryCharge}");
                     break;
                 case Engine.eEngineType.Fuel:
-                    questions.Add("Current Fuel Liters", $" up to {MAXFUELCAPACITY}");
+                    questions.Add("Current Fuel Liters", $" up to {k_MaxFuelCapacity}");
                     break;
             }
             return questions;
@@ -59,23 +59,23 @@ namespace Ex03.GarageLogic
                         m_NumOfDoors = numOfDoors;
                         break;
                     case "Wheel manufacturer and current air pressure":
-                        m_Wheels = ParseWheelData(i_Answer, MAXWHEELAIRCAPACITY, NUMOFWHEELS);
+                        m_Wheels = ParseWheelData(i_Answer, k_MaxWheelAirCapacity, k_NumOfWheels);
                         break;
                     case "Current Battery Charge":
                         float currentBatteryCahrge = float.Parse(i_Answer);
-                        if (currentBatteryCahrge < 0 || currentBatteryCahrge > MAXBATTERYCHARGE)
+                        if (currentBatteryCahrge < 0 || currentBatteryCahrge > k_MaxBatteryCharge)
                         {
                             throw new ArgumentException("Invalid number for battery charge");
                         }
-                        m_Engine = new ElectricEngine(currentBatteryCahrge, MAXBATTERYCHARGE);
+                        m_Engine = new ElectricEngine(currentBatteryCahrge, k_MaxBatteryCharge);
                         break;
                     case "Current Fuel Liters":
                         float currentFuel = float.Parse(i_Answer);
-                        if (currentFuel < 0 || currentFuel > MAXFUELCAPACITY)
+                        if (currentFuel < 0 || currentFuel > k_MaxFuelCapacity)
                         {
                             throw new ArgumentException("Invalid number for fuel ammount");
                         }
-                        m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan95, currentFuel, MAXFUELCAPACITY);
+                        m_Engine = new FuelEngine(FuelEngine.eFuelTypes.Octan95, currentFuel, k_MaxFuelCapacity);
                         break;
                 }
             }

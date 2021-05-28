@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
 {
     public class GarageLogic
     {
-        private static readonly Dictionary<string, Client> m_Clients = new Dictionary<string, Client>();
+        private static readonly Dictionary<string, Client> r_Clients = new Dictionary<string, Client>();
 
 
 
@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
         public static void AdmitNewVehicle(string i_OwnerName, string i_OwnerPhoneNumber, Vehicle i_Vehicle)
         {
             Client newClient = new Client(i_OwnerName, i_OwnerPhoneNumber, i_Vehicle);
-            m_Clients.Add(i_Vehicle.LicensePlate, newClient);
+            r_Clients.Add(i_Vehicle.LicensePlate, newClient);
         }
 
 
@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             
             if (i_VehicleState == "")
             {
-                foreach (string client in m_Clients.Keys)
+                foreach (string client in r_Clients.Keys)
                 {
                         vehicles.Add(client);
                 }
@@ -35,9 +35,9 @@ namespace Ex03.GarageLogic
             else
             {
                 eVehicleState VehicleState = parseVehicleState(i_VehicleState);
-                foreach(string client in m_Clients.Keys)
+                foreach(string client in r_Clients.Keys)
                 {
-                    if (m_Clients[client].VehicleState == VehicleState)
+                    if (r_Clients[client].VehicleState == VehicleState)
                     {
                         vehicles.Add(client);
                     }
@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic
         {
             try
             {
-                m_Clients[i_LicensePlate].VehicleState = i_VehicleState;
+                r_Clients[i_LicensePlate].VehicleState = i_VehicleState;
             }
             catch (KeyNotFoundException ex)
             {
@@ -66,7 +66,7 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
-                filled = m_Clients[i_LicensePlate].Vehicle.FillAir();
+                filled = r_Clients[i_LicensePlate].Vehicle.FillAir();
             }
             catch (KeyNotFoundException ex)
             {
@@ -83,12 +83,12 @@ namespace Ex03.GarageLogic
             try
             {
 
-               if(m_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Fuel)
+               if(r_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Fuel)
                 {
-                    FuelEngine engine = m_Clients[i_LicensePlate].Vehicle.Engine as FuelEngine;
+                    FuelEngine engine = r_Clients[i_LicensePlate].Vehicle.Engine as FuelEngine;
                     if(engine.FuelType == i_FuelType)
                     {
-                        filled = m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                        filled = r_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
                     }
                     else
                     {
@@ -113,9 +113,9 @@ namespace Ex03.GarageLogic
             bool filled = false;
             try
             {
-                if(m_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Electric)
+                if(r_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Electric)
                 {
-                    filled = m_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                    filled = r_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace Ex03.GarageLogic
         {
             try
             {
-                return m_Clients[i_LicensePlate].ToString();
+                return r_Clients[i_LicensePlate].ToString();
             }
             catch (KeyNotFoundException ex)
             {
@@ -145,7 +145,7 @@ namespace Ex03.GarageLogic
 
         public static bool CheckVehicleExists(string i_LicensePlate)
         {
-            return m_Clients.ContainsKey(i_LicensePlate);
+            return r_Clients.ContainsKey(i_LicensePlate);
         }
 
         private static eVehicleState parseVehicleState(string i_VehicleState)

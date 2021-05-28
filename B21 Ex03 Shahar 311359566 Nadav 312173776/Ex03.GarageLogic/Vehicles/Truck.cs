@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             questions.Add("Wheel manufacturer and current air pressure", $" up to {k_MaxWheelAirCapacity} seperated by a single space");
             questions.Add("Carring Hazardous Materials?", "Enter true of false");
             questions.Add("Max Weight", "");
-            questions.Add("Current Fuel Liters ", $"Up to {k_MaxFuelCapacity} liters");
+            questions.Add("Current Fuel Liters", $" Up to {k_MaxFuelCapacity} liters");
 
             return questions;
         }

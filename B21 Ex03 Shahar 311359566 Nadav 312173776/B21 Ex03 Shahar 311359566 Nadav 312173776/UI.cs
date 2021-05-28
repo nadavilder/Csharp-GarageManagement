@@ -143,21 +143,32 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine("Please Enter License Plate Number");
                 string licensePlate = Console.ReadLine();
-                Console.WriteLine("Please Choose new Vehicle State (Enter number 1-3)");
-                Console.WriteLine("1.In Repair \n2.Repaired \n3.Paid For");
-                string state = Console.ReadLine();
-                GarageLogic.eVehicleState vehicleState = GarageLogic.eVehicleState.In_Repair;
-                switch (state)
+                bool valid = false;
+                GarageLogic.eVehicleState vehicleState= GarageLogic.eVehicleState.In_Repair;
+
+                while (!valid)
                 {
-                    case "1":
-                        vehicleState = GarageLogic.eVehicleState.In_Repair;
-                        break;
-                    case "2":
-                        vehicleState = GarageLogic.eVehicleState.Repaired;
-                        break;
-                    case "3":
-                        vehicleState = GarageLogic.eVehicleState.Paid_For;
-                        break;
+                    Console.WriteLine("Please Choose new Vehicle State (Enter number 1-3)");
+                    Console.WriteLine("1.In Repair \n2.Repaired \n3.Paid For");
+                    string state = Console.ReadLine();
+                    switch (state)
+                    {
+                        case "1":
+                            vehicleState = GarageLogic.eVehicleState.In_Repair;
+                            valid = true;
+                            break;
+                        case "2":
+                            vehicleState = GarageLogic.eVehicleState.Repaired;
+                            valid = true;
+                            break;
+                        case "3":
+                            vehicleState = GarageLogic.eVehicleState.Paid_For;
+                            valid = true;
+                            break;
+                        default:
+                            Console.WriteLine("invalid input");
+                            break;
+                    }
                 }
                 GarageLogic.ChangeVehicleStatus(licensePlate, vehicleState);
                 Console.WriteLine($"The Vehicle's state has been Uptated to {vehicleState}");

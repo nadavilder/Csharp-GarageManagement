@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                eVehicleState VehicleState = ParseVehicleState(i_VehicleState);
+                eVehicleState VehicleState = parseVehicleState(i_VehicleState);
                 foreach(string client in m_Clients.Keys)
                 {
                     if (m_Clients[client].VehicleState == VehicleState)
@@ -148,7 +148,7 @@ namespace Ex03.GarageLogic
             return m_Clients.ContainsKey(i_LicensePlate);
         }
 
-        private static eVehicleState ParseVehicleState(string i_VehicleState)
+        private static eVehicleState parseVehicleState(string i_VehicleState)
         {
             eVehicleState state;
             switch (i_VehicleState)

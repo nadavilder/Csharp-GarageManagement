@@ -17,25 +17,25 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             switch (option)
             {
                 case "1":
-                    AdmitNewVehicle();
+                    admitNewVehicle();
                     break;
                 case "2":
-                    ShowCurrentVehicles();
+                    showCurrentVehicles();
                     break;
                 case "3":
-                    ChangeVehicleStatus();
+                    changeVehicleStatus();
                     break;
                 case "4":
-                    FillAir();
+                    fillAir();
                     break;
                 case "5":
-                    FillFuelVehicle();
+                    fillFuelVehicle();
                     break;
                 case "6":
-                    ChargeElectricVehicle();
+                    chargeElectricVehicle();
                     break;
                 case "7":
-                    ShowVehicleDetails();
+                    showVehicleDetails();
                     break;
                 case "8":
                     continueProgram = false;
@@ -49,10 +49,23 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         
         
         //1
-        private static void AdmitNewVehicle()
+        private static void admitNewVehicle()
         {
-            Console.WriteLine("Please Enter License Plate Number");
-            string liecensePlate = Console.ReadLine();
+            string liecensePlate = null;
+            bool validLicensePlate = false;
+            while (!validLicensePlate)
+            {
+                Console.WriteLine("Please Enter License Plate Number of length 8");
+                liecensePlate = Console.ReadLine();
+                if (validateNumber(liecensePlate, 8))
+                {
+                    validLicensePlate = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid license plate number");
+                }
+            }
             bool exists = GarageLogic.CheckVehicleExists(liecensePlate);
             if (exists)
             {
@@ -103,8 +116,21 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
                 }
                 Console.WriteLine("Please Enter Your Owner Name");
                 string ownerName = Console.ReadLine();
-                Console.WriteLine("Please Enter Phone Number");
-                string phoneNum = Console.ReadLine();
+                string phoneNum = null;
+                bool validPhone = false;
+                while (!validPhone)
+                {
+                    Console.WriteLine("Please Enter Phone Number of length 10");
+                    phoneNum = Console.ReadLine();
+                    if (validateNumber(phoneNum, 10))
+                    {
+                        validPhone = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid phone number");
+                    }
+                }
                 GarageLogic.AdmitNewVehicle(ownerName, phoneNum, newVehicle);
             }
         }
@@ -112,7 +138,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
 
 
         //2
-        private static void ShowCurrentVehicles()
+        private static void showCurrentVehicles()
         {
             try
             {
@@ -132,12 +158,12 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             catch(FormatException ex)
             {
                 Console.WriteLine($"{ex.Message} is an invalid argument For the filter");
-                ShowCurrentVehicles();
+                showCurrentVehicles();
             }
         }
 
         //3
-        private static void ChangeVehicleStatus()
+        private static void changeVehicleStatus()
         {
             try
             {
@@ -179,7 +205,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         }
 
         //4
-        private static void FillAir()
+        private static void fillAir()
         {
             try
             {
@@ -204,15 +230,23 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine($"The Vehicle {ex.Message} Don't Exsist");
             }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         //5
-        private static void FillFuelVehicle()
+        private static void fillFuelVehicle()
         {
 
             Console.WriteLine("Please Enter License Plate Number");
             string licensePlate = Console.ReadLine();
-            Console.WriteLine("Please Enter fuel type");
+            Console.WriteLine("Please Enter fuel type from the following:");
+            foreach (string type in Enum.GetNames(typeof(FuelEngine.eFuelTypes)))
+            {
+                Console.WriteLine(type);
+            }
             string fuelType = Console.ReadLine();
             Console.WriteLine("Please Enter amout to fill");
             string fuelAmount = Console.ReadLine();
@@ -246,7 +280,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         }
 
         //6
-        private static void ChargeElectricVehicle()
+        private static void chargeElectricVehicle()
         {
 
             Console.WriteLine("Please Enter License Plate Number");
@@ -284,7 +318,7 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         }
 
         //7
-        private static void ShowVehicleDetails()
+        private static void showVehicleDetails()
         {
             try
             {
@@ -299,6 +333,23 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static bool validateNumber(string i_Number, int i_RequiredLength)
+        {
+            bool validNumber = true;
+            if(i_Number.Length != i_RequiredLength)
+            {
+                validNumber = false;
+            }
+            foreach(char digit in i_Number)
+            {
+                if (!char.IsDigit(digit))
+                {
+                    validNumber = false;
+                }
+            }
+            return validNumber;
         }
 
 

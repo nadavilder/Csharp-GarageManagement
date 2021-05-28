@@ -23,6 +23,10 @@ namespace Ex03.GarageLogic
         public bool FillAir(float i_AirToFill)
         {
             bool filled = false;
+            if (i_AirToFill < 0)
+            {
+                throw new ArgumentException("Fill amount cannot be negative");
+            }
             if (m_CurrentPressure + i_AirToFill <= m_MaxPressure)
             {
                 m_CurrentPressure += i_AirToFill;

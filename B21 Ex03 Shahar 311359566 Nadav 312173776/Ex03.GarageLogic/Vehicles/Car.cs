@@ -48,7 +48,7 @@ namespace Ex03.GarageLogic
                 switch (i_Question)
                 {
                     case "Car Color":
-                        m_Color = ParseCarColor(i_Answer);
+                        m_Color = parseCarColor(i_Answer);
                         break;
                     case "Number Of Doors":
                         int numOfDoors = Int32.Parse(i_Answer);
@@ -85,7 +85,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        private eCarColor ParseCarColor(string i_CarColor)
+        private eCarColor parseCarColor(string i_CarColor)
         {
             eCarColor color;
             switch (i_CarColor)

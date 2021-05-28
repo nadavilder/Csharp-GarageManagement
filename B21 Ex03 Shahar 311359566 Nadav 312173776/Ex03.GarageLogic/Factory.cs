@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
         
         public static Vehicle CreateVehicleFromData(string i_VehicleType, string i_LicensePlate)
         {
-            eVehicleType vehicleType = ParseVehicleType(i_VehicleType);
+            eVehicleType vehicleType = parseVehicleType(i_VehicleType);
 
             Vehicle newVehicle = null;
 
@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
             return newVehicle;
         }
 
-        private static eVehicleType ParseVehicleType(string i_VehicleType)
+        private static eVehicleType parseVehicleType(string i_VehicleType)
         {
             eVehicleType type;
             switch (i_VehicleType)

@@ -49,7 +49,7 @@ namespace Ex03.GarageLogic
                 switch (i_Question)
                 {
                     case "License Type":
-                        m_LicenseType = ParseLicenseType(i_Answer);
+                        m_LicenseType = parseLicenseType(i_Answer);
                         break;
                     case "Motor Volume in cc":
                         m_EngineVolume = Int32.Parse(i_Answer);
@@ -87,7 +87,7 @@ namespace Ex03.GarageLogic
             return $"{base.ToString()}License Type: {m_LicenseType} , Engine Volume: {m_EngineVolume}";
         }
 
-        private eLicenseType ParseLicenseType(string i_LicenseType)
+        private eLicenseType parseLicenseType(string i_LicenseType)
         {
             eLicenseType type;
             switch (i_LicenseType)

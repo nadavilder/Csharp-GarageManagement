@@ -19,6 +19,10 @@ namespace Ex03.GarageLogic
         public bool FillEngine(float i_FillAmount)
         {
             bool filled = false;
+            if (i_FillAmount < 0)
+            {
+                throw new ArgumentException("Fill amount cannot be negative");
+            }
             if (m_CurrentEnergyAmount + i_FillAmount <= m_MaxEnergyAmount)
             {
                 m_CurrentEnergyAmount += i_FillAmount;

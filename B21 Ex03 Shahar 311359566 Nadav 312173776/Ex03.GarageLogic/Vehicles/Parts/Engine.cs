@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Engine
+    public abstract class Engine
     {
         private const int k_MinFuel = 0;
         private float m_CurrentEnergyAmount;

@@ -46,7 +46,7 @@ namespace Ex03.GarageLogic
             {
                 r_Clients[i_LicensePlate].VehicleState = i_VehicleState;
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 throw new KeyNotFoundException(i_LicensePlate);
             }
@@ -59,7 +59,7 @@ namespace Ex03.GarageLogic
             {
                 filled = r_Clients[i_LicensePlate].Vehicle.FillAir();
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 throw new KeyNotFoundException(i_LicensePlate);
             }
@@ -89,7 +89,7 @@ namespace Ex03.GarageLogic
                     throw new ArgumentException("Vehicle is not a fuel based vehicle");
                 }
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 throw new KeyNotFoundException(i_LicensePlate);
             }
@@ -111,7 +111,7 @@ namespace Ex03.GarageLogic
                     throw new ArgumentException("Vehicle is not an electric vehicle");
                 }
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 throw new KeyNotFoundException(i_LicensePlate);
             }
@@ -125,7 +125,7 @@ namespace Ex03.GarageLogic
             {
                 return r_Clients[i_LicensePlate].ToString();
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
                 throw new KeyNotFoundException($"The vehicle {i_LicensePlate} does not exists");
             }

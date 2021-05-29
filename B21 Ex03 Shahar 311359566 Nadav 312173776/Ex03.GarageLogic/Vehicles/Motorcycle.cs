@@ -79,7 +79,7 @@ namespace Ex03.GarageLogic
                         break;
                 }
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 throw new FormatException($"{i_Answer} is not a valid input for {i_Question}");
             }

@@ -46,9 +46,9 @@ namespace Ex03.GarageLogic
             {
                 r_Clients[i_LicensePlate].VehicleState = i_VehicleState;
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException ex)
             {
-                throw new KeyNotFoundException(i_LicensePlate);
+                throw new KeyNotFoundException(i_LicensePlate, ex);
             }
         }
 
@@ -59,9 +59,9 @@ namespace Ex03.GarageLogic
             {
                 filled = r_Clients[i_LicensePlate].Vehicle.FillAir();
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException ex)
             {
-                throw new KeyNotFoundException(i_LicensePlate);
+                throw new KeyNotFoundException(i_LicensePlate, ex);
             }
 
             return filled;
@@ -89,9 +89,9 @@ namespace Ex03.GarageLogic
                     throw new ArgumentException("Vehicle is not a fuel based vehicle");
                 }
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException ex)
             {
-                throw new KeyNotFoundException(i_LicensePlate);
+                throw new KeyNotFoundException(i_LicensePlate, ex);
             }
 
             return filled;
@@ -111,9 +111,9 @@ namespace Ex03.GarageLogic
                     throw new ArgumentException("Vehicle is not an electric vehicle");
                 }
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException ex)
             {
-                throw new KeyNotFoundException(i_LicensePlate);
+                throw new KeyNotFoundException(i_LicensePlate, ex);
             }
 
             return filled;
@@ -125,9 +125,9 @@ namespace Ex03.GarageLogic
             {
                 return r_Clients[i_LicensePlate].ToString();
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException ex)
             {
-                throw new KeyNotFoundException($"The vehicle {i_LicensePlate} does not exists");
+                throw new KeyNotFoundException($"The vehicle {i_LicensePlate} does not exists", ex);
             }
         }
 

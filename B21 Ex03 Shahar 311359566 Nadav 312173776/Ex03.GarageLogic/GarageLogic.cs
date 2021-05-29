@@ -97,14 +97,14 @@ namespace Ex03.GarageLogic
             return filled;
         }
 
-        public static bool ChargeElectricVehicle(string i_LicensePlate, float i_FillAmount)
+        public static bool ChargeElectricVehicle(string i_LicensePlate, float i_FillAmountInMinutes)
         {
             bool filled = false;
             try
             {
                 if(r_Clients[i_LicensePlate].Vehicle.EngineType == Engine.eEngineType.Electric)
                 {
-                    filled = r_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmount);
+                    filled = r_Clients[i_LicensePlate].Vehicle.Engine.FillEngine(i_FillAmountInMinutes / 60f);
                 }
                 else
                 {

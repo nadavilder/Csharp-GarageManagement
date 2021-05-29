@@ -290,13 +290,13 @@ namespace B21_Ex03_Shahar_311359566_Nadav_312173776
         {
             Console.WriteLine("Please Enter License Plate Number");
             string licensePlate = Console.ReadLine();
-            Console.WriteLine("Please Enter Hours to Charge");
-            string hours = Console.ReadLine();
+            Console.WriteLine("Please Enter minutes to Charge");
+            string minutes = Console.ReadLine();
             try
             {
-                if (GarageLogic.ChargeElectricVehicle(licensePlate, float.Parse(hours)))
+                if (GarageLogic.ChargeElectricVehicle(licensePlate, float.Parse(minutes)))
                 {
-                    Console.WriteLine($"The Vehicle was Charged with {hours} hours of battery charge");
+                    Console.WriteLine($"The Vehicle was Charged with {minutes} minutes of battery charge");
                 }
                 else
                 {
